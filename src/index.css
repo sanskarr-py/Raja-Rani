@@ -8,13 +8,17 @@
   }
   
   body {
-    background-color: #070A0F;
-    color: #F8FAFC;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #FAF8F2;
+    color: #263238;
+    font-family: 'Manrope', 'Inter', sans-serif;
   }
 
-  h1, h2, h3, .font-cinzel {
-    font-family: 'Cinzel', serif;
+  h1, h2, h3, .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-cormorant {
+    font-family: 'Cormorant Garamond', serif;
   }
 }
 
@@ -36,66 +40,56 @@
   transform: rotateY(180deg);
 }
 
-/* Custom Glass & Royal Gradients */
-.glass-panel {
-  background: rgba(17, 23, 34, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+/* Luxury Royal Panels & Borders */
+.luxury-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(216, 189, 106, 0.45);
+  box-shadow: 0 8px 30px rgba(23, 59, 103, 0.06), 0 1px 3px rgba(201, 162, 39, 0.1);
 }
 
-.glass-panel-subtle {
-  background: rgba(17, 23, 34, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.luxury-card-cream {
+  background: #FDFBF7;
+  border: 1px solid rgba(216, 189, 106, 0.4);
+  box-shadow: 0 6px 20px rgba(23, 59, 103, 0.05);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #997A15 100%);
+  background: linear-gradient(135deg, #A8841B 0%, #C9A227 50%, #806210 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-border-glow {
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25), inset 0 0 15px rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-}
-
-.police-border-glow {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), inset 0 0 10px rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.6);
-}
-
-.chor-border-glow {
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), inset 0 0 10px rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.6);
-}
-
-/* Shimmer Animation */
-.animate-gold-shimmer {
-  background: linear-gradient(90deg, #D4AF37 0%, #FFF3C4 50%, #D4AF37 100%);
-  background-size: 200% auto;
+.royal-blue-gradient-text {
+  background: linear-gradient(135deg, #173B67 0%, #234F7D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
 }
 
-/* Custom Scrollbar */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #D8BD6A 30%, #C9A227 50%, #D8BD6A 70%, transparent 100%);
+}
+
+.gold-border-ornate {
+  border: 1.5px solid #D8BD6A;
+  box-shadow: 0 0 0 3px rgba(216, 189, 106, 0.15);
+}
+
+/* Light Royal Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0F17;
+  background: #F3EDE1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #233348;
+  background: #D8BD6A;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #C9A227;
 }

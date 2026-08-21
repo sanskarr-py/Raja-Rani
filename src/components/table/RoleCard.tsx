@@ -30,9 +30,9 @@ export const RoleCard: React.FC<RoleCardProps> = ({
   };
 
   const dimensions = {
-    sm: 'w-40 h-56 text-xs',
-    md: 'w-56 h-80 text-sm',
-    lg: 'w-64 h-92 md:w-72 md:h-[420px] text-base',
+    sm: 'w-44 h-64 text-xs',
+    md: 'w-56 h-84 text-sm',
+    lg: 'w-64 h-96 md:w-72 md:h-[430px] text-base',
   }[size];
 
   return (
@@ -40,82 +40,82 @@ export const RoleCard: React.FC<RoleCardProps> = ({
       <motion.div
         className="w-full h-full relative preserve-3d cursor-pointer"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.7, type: 'spring', stiffness: 260, damping: 20 }}
+        transition={{ duration: 0.75, type: 'spring', stiffness: 240, damping: 22 }}
         onClick={handleCardClick}
       >
-        {/* FRONT OF CARD (LOCKED / HIDDEN) */}
-        <div className="absolute inset-0 backface-hidden rounded-3xl bg-[#101726] border-2 border-[#D4AF37]/50 shadow-2xl p-6 flex flex-col items-center justify-between overflow-hidden">
-          {/* Background filigree ornament */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(212,175,55,0.15)_0%,transparent_70%)] pointer-events-none" />
-          <div className="absolute top-2 left-2 right-2 bottom-2 border border-[#D4AF37]/20 rounded-2xl pointer-events-none" />
+        {/* FRONT OF CARD (FACE-DOWN / SECRET) */}
+        <div className="absolute inset-0 backface-hidden rounded-3xl bg-[#FAF8F2] border-2 border-[#D8BD6A] shadow-[0_16px_35px_rgba(23,59,103,0.12)] p-6 flex flex-col items-center justify-between overflow-hidden">
+          {/* Inner Ornate Filigree Border */}
+          <div className="absolute top-2.5 left-2.5 right-2.5 bottom-2.5 border border-[#D8BD6A]/60 rounded-2xl pointer-events-none" />
+          <div className="absolute top-3.5 left-3.5 right-3.5 bottom-3.5 border border-dashed border-[#D8BD6A]/40 rounded-xl pointer-events-none" />
 
           {/* Top header */}
-          <div className="w-full flex items-center justify-between text-[#D4AF37] z-10">
-            <Sparkles className="w-4 h-4" />
-            <span className="font-cinzel text-xs font-bold tracking-widest uppercase">
+          <div className="w-full flex items-center justify-between text-[#173B67] z-10">
+            <Sparkles className="w-4 h-4 text-[#C9A227]" />
+            <span className="font-playfair text-xs font-bold tracking-widest uppercase">
               Raja Rani
             </span>
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 text-[#C9A227]" />
           </div>
 
           {/* Center Vault Lock Icon */}
-          <div className="flex flex-col items-center my-auto z-10">
+          <div className="flex flex-col items-center my-auto z-10 text-center">
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-20 h-20 rounded-full bg-[#1A2333] border-2 border-[#D4AF37] shadow-[0_0_25px_rgba(212,175,55,0.4)] flex items-center justify-center text-[#D4AF37] mb-4"
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-20 h-20 rounded-2xl bg-[#FAF3DE] border-2 border-[#C9A227] shadow-[0_4px_16px_rgba(201,162,39,0.25)] flex items-center justify-center text-[#173B67] mb-3"
             >
-              <Lock className="w-9 h-9" />
+              <Lock className="w-9 h-9 text-[#C9A227]" />
             </motion.div>
-            <h3 className="font-cinzel text-lg font-bold text-white tracking-wider">
+            <h3 className="font-playfair text-lg font-black text-[#173B67] tracking-wider uppercase">
               SECRET ROLE
             </h3>
-            <p className="text-xs text-slate-400 mt-1 font-medium">Keep Strictly Private</p>
+            <p className="text-xs text-[#5F6872] mt-0.5 font-medium">Confidential Assignment</p>
           </div>
 
           {/* Bottom Flip Action CTA */}
           <div className="w-full z-10">
-            <div className="py-2.5 px-4 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] flex items-center justify-center gap-2 text-xs font-bold font-cinzel">
-              <Eye className="w-4 h-4" />
+            <div className="py-2.5 px-4 rounded-xl bg-[#173B67] text-white flex items-center justify-center gap-2 text-xs font-bold font-playfair tracking-wider shadow-sm">
+              <Eye className="w-4 h-4 text-[#D8BD6A]" />
               <span>TAP TO REVEAL</span>
             </div>
           </div>
         </div>
 
-        {/* BACK OF CARD (REVEALED ROLE) */}
+        {/* BACK OF CARD (REVEALED PLAYING CARD) */}
         <div
-          className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl bg-[#101726] shadow-2xl p-6 flex flex-col items-center justify-between overflow-hidden"
+          className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl bg-white shadow-[0_16px_40px_rgba(23,59,103,0.15)] p-6 flex flex-col items-center justify-between overflow-hidden"
           style={{
-            border: `2px solid ${roleConfig?.borderColor || '#D4AF37'}`,
-            boxShadow: `0 0 35px ${roleConfig?.glowColor || 'rgba(212,175,55,0.35)'}`,
+            border: `2px solid ${roleConfig?.borderColor || '#D8BD6A'}`,
           }}
         >
-          {/* Card background glowing ambience */}
+          {/* Card luxury inner frame */}
           <div
-            className="absolute inset-0 opacity-20 pointer-events-none"
-            style={{
-              background: `radial-gradient(circle at 50% 30%, ${roleConfig?.color || '#D4AF37'} 0%, transparent 75%)`,
-            }}
+            className="absolute top-2.5 left-2.5 right-2.5 bottom-2.5 border rounded-2xl pointer-events-none"
+            style={{ borderColor: `${roleConfig?.borderColor || '#D8BD6A'}60` }}
           />
           <div
-            className="absolute top-2 left-2 right-2 bottom-2 border rounded-2xl pointer-events-none"
-            style={{ borderColor: `${roleConfig?.borderColor || '#D4AF37'}30` }}
+            className="absolute top-3.5 left-3.5 right-3.5 bottom-3.5 border border-dashed rounded-xl pointer-events-none"
+            style={{ borderColor: `${roleConfig?.borderColor || '#D8BD6A'}40` }}
           />
 
           {/* Top role header banner */}
           <div className="w-full flex items-center justify-between z-10">
             <span
-              className="px-2.5 py-1 rounded-full text-xs font-bold font-cinzel tracking-wider"
+              className="px-2.5 py-0.5 rounded-full text-xs font-bold font-playfair tracking-wider uppercase"
               style={{
                 backgroundColor: roleConfig?.badgeBg,
                 color: roleConfig?.color,
-                border: `1px solid ${roleConfig?.borderColor}50`,
+                border: `1px solid ${roleConfig?.borderColor}`,
               }}
             >
               RANK #{roleConfig?.rank}
             </span>
-            <div className="flex items-center gap-1 font-cinzel font-bold text-white text-sm">
-              <Sparkles className="w-3.5 h-3.5" style={{ color: roleConfig?.color }} />
+            <div
+              className="flex items-center gap-1 font-playfair font-black text-sm"
+              style={{ color: roleConfig?.color }}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
               <span>{roleConfig?.points} PTS</span>
             </div>
           </div>
@@ -125,22 +125,24 @@ export const RoleCard: React.FC<RoleCardProps> = ({
             <motion.div
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
-              className="w-24 h-24 rounded-full flex items-center justify-center text-5xl mb-3 shadow-inner"
+              className="w-24 h-24 rounded-2xl flex items-center justify-center text-5xl mb-2 shadow-inner"
               style={{
                 backgroundColor: roleConfig?.badgeBg,
                 border: `2px solid ${roleConfig?.borderColor}`,
-                boxShadow: `0 0 20px ${roleConfig?.glowColor}`,
               }}
             >
               {roleConfig?.emoji}
             </motion.div>
 
-            <h2 className="font-cinzel text-2xl font-black tracking-wide text-white">
+            <h2
+              className="font-playfair text-2xl font-black tracking-wide"
+              style={{ color: roleConfig?.color }}
+            >
               {roleConfig?.name.toUpperCase()}
             </h2>
-            <p className="text-xs text-slate-300 font-medium">{roleConfig?.nepaliName}</p>
+            <p className="text-xs text-[#5F6872] font-semibold">{roleConfig?.nepaliName}</p>
 
-            <p className="text-xs text-slate-400 mt-2 px-2 line-clamp-2 leading-tight">
+            <p className="text-xs text-[#5F6872] mt-1.5 px-2 line-clamp-2 leading-tight font-medium">
               {roleConfig?.description}
             </p>
           </div>
@@ -148,17 +150,17 @@ export const RoleCard: React.FC<RoleCardProps> = ({
           {/* Secret Objective Box */}
           {!hideSecretInstructions && roleConfig && (
             <div
-              className="w-full z-10 p-3 rounded-2xl border text-left"
+              className="w-full z-10 p-3 rounded-2xl border text-left shadow-sm"
               style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.75)',
-                borderColor: `${roleConfig.borderColor}40`,
+                backgroundColor: roleConfig.badgeBg,
+                borderColor: `${roleConfig.borderColor}`,
               }}
             >
-              <div className="flex items-center gap-1.5 mb-1 text-[11px] font-bold uppercase tracking-wider text-slate-300">
+              <div className="flex items-center gap-1.5 mb-0.5 text-[11px] font-bold uppercase tracking-wider text-[#173B67]">
                 <Shield className="w-3.5 h-3.5" style={{ color: roleConfig.color }} />
-                <span>Secret Mission</span>
+                <span>Mission</span>
               </div>
-              <p className="text-[11px] text-slate-300 leading-snug">
+              <p className="text-[11px] text-[#263238] leading-snug font-medium">
                 {roleConfig.secretObjective}
               </p>
             </div>

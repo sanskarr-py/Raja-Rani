@@ -3,7 +3,7 @@ import { motion, type HTMLMotionProps } from 'framer-motion';
 import { sound } from '../../utils/sound';
 
 interface ButtonProps extends HTMLMotionProps<'button'> {
-  variant?: 'gold' | 'police' | 'danger' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'gold' | 'danger' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   leftIcon?: React.ReactNode;
@@ -13,7 +13,7 @@ interface ButtonProps extends HTMLMotionProps<'button'> {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  variant = 'gold',
+  variant = 'primary',
   size = 'md',
   fullWidth = false,
   leftIcon,
@@ -33,22 +33,32 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const sizeClasses = {
-    sm: 'px-3 py-1.5 text-xs font-semibold rounded-lg gap-1.5',
-    md: 'px-5 py-2.5 text-sm font-semibold rounded-xl gap-2',
-    lg: 'px-7 py-3.5 text-base font-bold rounded-2xl gap-2.5 tracking-wide',
+    sm: 'px-3.5 py-1.5 text-xs font-bold rounded-xl gap-1.5 tracking-wide',
+    md: 'px-5 py-2.5 text-sm font-bold rounded-2xl gap-2 tracking-wider',
+    lg: 'px-7 py-3.5 text-base font-extrabold rounded-2xl gap-2.5 tracking-widest',
   }[size];
 
   const variantClasses = {
-    gold: 'bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#D4AF37] text-black shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] border border-[#FFE082]',
-    police: 'bg-gradient-to-r from-[#2563EB] to-[#3B82F6] text-white shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] border border-[#93C5FD]',
-    danger: 'bg-gradient-to-r from-[#DC2626] to-[#EF4444] text-white shadow-[0_0_20px_rgba(239,68,68,0.4)] hover:shadow-[0_0_30px_rgba(239,68,68,0.6)] border border-[#FCA5A5]',
-    secondary: 'bg-[#111722]/80 hover:bg-[#182232] text-[#F8FAFC] border border-white/10 hover:border-[#D4AF37]/50 shadow-lg backdrop-blur-md',
-    ghost: 'bg-transparent hover:bg-white/5 text-[#94A3B8] hover:text-white border border-transparent hover:border-white/10',
+    // Primary: Royal Blue with subtle gold edge and white/gold text
+    primary:
+      'bg-[#173B67] hover:bg-[#0F2847] text-white border border-[#D8BD6A]/50 shadow-[0_4px_16px_rgba(23,59,103,0.22)] hover:shadow-[0_6px_22px_rgba(23,59,103,0.35)]',
+    // Secondary: Outlined Royal Blue with ivory fill and champagne hover
+    secondary:
+      'bg-[#FAF8F2]/90 hover:bg-[#FAF3DE] text-[#173B67] border-2 border-[#173B67] shadow-[0_2px_10px_rgba(23,59,103,0.08)] hover:border-[#173B67]',
+    // Gold: Rich Gold with dark royal text
+    gold:
+      'bg-gradient-to-r from-[#C9A227] via-[#D8BD6A] to-[#C9A227] text-[#173B67] font-black border border-[#FAF3DE] shadow-[0_4px_18px_rgba(201,162,39,0.35)] hover:shadow-[0_6px_25px_rgba(201,162,39,0.5)]',
+    // Danger: Tasteful Vermilion Red
+    danger:
+      'bg-[#B63A32] hover:bg-[#8F2922] text-white border border-[#D8726A]/50 shadow-[0_4px_16px_rgba(182,58,50,0.25)] hover:shadow-[0_6px_22px_rgba(182,58,50,0.35)]',
+    // Ghost: Subtle slate text
+    ghost:
+      'bg-transparent hover:bg-[#E8D9B5]/30 text-[#5F6872] hover:text-[#173B67] border border-transparent',
   }[variant];
 
   return (
     <motion.button
-      whileHover={disabled || isLoading ? {} : { scale: 1.02 }}
+      whileHover={disabled || isLoading ? {} : { scale: 1.02, y: -1 }}
       whileTap={disabled || isLoading ? {} : { scale: 0.98 }}
       disabled={disabled || isLoading}
       onClick={handleClick}

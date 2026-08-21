@@ -1,35 +1,43 @@
 import React, { useMemo } from 'react';
 
 export const ParticleBackground: React.FC = () => {
-  // Generate stable random particles
+  // Generate soft, subtle champagne gold dust particles
   const particles = useMemo(() => {
-    return Array.from({ length: 32 }).map((_, i) => ({
+    return Array.from({ length: 24 }).map((_, i) => ({
       id: i,
-      left: `${(i * 3.125 + Math.sin(i) * 10 + 5) % 100}%`,
-      top: `${(i * 4.7 + Math.cos(i) * 15 + 10) % 100}%`,
-      size: (i % 4) * 1.5 + 2,
-      duration: (i % 5) * 3 + 6,
-      delay: (i % 6) * 1.2,
-      opacity: 0.15 + (i % 3) * 0.15,
-      isGold: i % 3 === 0,
+      left: `${(i * 4.1 + Math.sin(i) * 12 + 8) % 100}%`,
+      top: `${(i * 4.3 + Math.cos(i) * 14 + 10) % 100}%`,
+      size: (i % 3) * 1.5 + 2,
+      duration: (i % 4) * 4 + 8,
+      delay: (i % 5) * 1.5,
+      opacity: 0.2 + (i % 3) * 0.15,
     }));
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {/* Deep Royal Vignette Background Gradients */}
-      <div className="absolute inset-0 bg-[#070A0F]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(212,175,55,0.08)_0%,transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.05)_0%,transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(239,68,68,0.04)_0%,transparent_50%)]" />
+      {/* Warm Ivory & Soft Cream Canvas Base */}
+      <div className="absolute inset-0 bg-[#FAF8F2]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_15%,#FFFDF8_0%,#F3EDE1_65%,#E8D9B5_100%)] opacity-80" />
 
-      {/* Floating Gold & Cyan Ember Particles */}
+      {/* Subtle Luxury Card Suit & Royal Motifs Background */}
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage: `radial-gradient(#C9A227 0.75px, transparent 0.75px)`,
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      {/* Subtle Royal Corner Borders & Filigree Lines */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D8BD6A] to-transparent opacity-40" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D8BD6A] to-transparent opacity-40" />
+
+      {/* Soft Floating Champagne Gold Specks */}
       {particles.map((p) => (
         <div
           key={p.id}
-          className={`absolute rounded-full animate-float ${
-            p.isGold ? 'bg-[#D4AF37] shadow-[0_0_8px_#D4AF37]' : 'bg-[#93C5FD] shadow-[0_0_8px_#93C5FD]'
-          }`}
+          className="absolute rounded-full bg-[#C9A227] shadow-[0_0_6px_rgba(201,162,39,0.3)] animate-float"
           style={{
             left: p.left,
             top: p.top,
@@ -41,15 +49,6 @@ export const ParticleBackground: React.FC = () => {
           }}
         />
       ))}
-
-      {/* Subtle royal mesh grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(212, 175, 55, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.4) 1px, transparent 1px)`,
-          backgroundSize: '48px 48px',
-        }}
-      />
     </div>
   );
 };

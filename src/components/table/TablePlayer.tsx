@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Lock, Crown, Crosshair } from 'lucide-react';
+import { Shield, Lock, Crown, Crosshair, Check } from 'lucide-react';
 import { ROLES_CONFIG, type Player } from '../../types/game';
 import { sound } from '../../utils/sound';
 
@@ -35,7 +35,7 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
 
   return (
     <motion.div
-      whileHover={canBeAccused && !player.isPoliceRevealed ? { scale: 1.05, y: -4 } : {}}
+      whileHover={canBeAccused && !player.isPoliceRevealed ? { scale: 1.05, y: -6 } : {}}
       whileTap={canBeAccused && !player.isPoliceRevealed ? { scale: 0.96 } : {}}
       onClick={handleClick}
       className={`relative flex flex-col items-center transition-all duration-300 ${
@@ -47,42 +47,42 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
         <motion.div
           initial={{ opacity: 0, y: 10, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          className="absolute -top-12 z-20 max-w-[170px] px-2.5 py-1 rounded-xl bg-[#1E293B] border border-white/20 text-[10px] text-slate-200 shadow-xl pointer-events-none text-center font-medium leading-tight"
+          className="absolute -top-12 z-20 max-w-[170px] px-3 py-1 rounded-xl bg-white border border-[#D8BD6A] text-[11px] text-[#173B67] shadow-[0_4px_16px_rgba(23,59,103,0.12)] pointer-events-none text-center font-bold leading-tight"
         >
           {player.botPersonality.dialogue}
-          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#1E293B] border-r border-b border-white/20 rotate-45" />
+          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-r border-b border-[#D8BD6A] rotate-45" />
         </motion.div>
       )}
 
-      {/* Main Seat Card */}
+      {/* Main Seat Card (White/Cream Luxury Card) */}
       <div
-        className={`relative flex flex-col items-center p-3 rounded-2xl transition-all duration-300 ${
+        className={`relative flex flex-col items-center p-3.5 rounded-2xl transition-all duration-300 ${
           compact ? 'w-28 md:w-32' : 'w-32 md:w-40'
         } ${
           isAccused
-            ? 'bg-red-950/80 border-2 border-red-500 shadow-[0_0_25px_rgba(239,68,68,0.6)] animate-pulse'
+            ? 'bg-[#FAF3DE] border-2 border-[#173B67] shadow-[0_0_24px_rgba(23,59,103,0.3)] -translate-y-2'
             : player.isPoliceRevealed
-            ? 'bg-blue-950/70 border-2 border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)]'
+            ? 'bg-[#EBF2FA] border-2 border-[#173B67] shadow-[0_0_20px_rgba(23,59,103,0.22)]'
             : isCurrentPlayer
-            ? 'bg-[#182335] border-2 border-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.3)]'
-            : 'bg-[#111722]/90 border border-white/10 hover:border-white/30 shadow-lg'
+            ? 'bg-white border-2 border-[#C9A227] shadow-[0_4px_16px_rgba(201,162,39,0.22)]'
+            : 'bg-white border border-[#E2D7C3] hover:border-[#D8BD6A] shadow-[0_4px_12px_rgba(23,59,103,0.06)]'
         }`}
       >
         {/* Accuse Target Indicator for Police */}
         {canBeAccused && !player.isPoliceRevealed && (
-          <div className="absolute -top-3 right-2 px-1.5 py-0.5 rounded-md bg-red-600 text-white text-[9px] font-bold flex items-center gap-1 shadow-md animate-bounce">
-            <Crosshair className="w-3 h-3" />
-            <span>ACCUSE</span>
+          <div className="absolute -top-3 right-2 px-2 py-0.5 rounded-md bg-[#173B67] text-[#FAF8F2] text-[9px] font-bold flex items-center gap-1 shadow-md border border-[#D8BD6A]">
+            {isAccused ? <Check className="w-3 h-3 text-[#D8BD6A]" /> : <Crosshair className="w-3 h-3 text-[#D8BD6A]" />}
+            <span>{isAccused ? 'SELECTED' : 'ACCUSE'}</span>
           </div>
         )}
 
-        {/* Avatar Ring */}
+        {/* Circular Avatar */}
         <div className="relative mb-2">
           <div
-            className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-3xl select-none shadow-inner ${
+            className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-3xl select-none shadow-sm ${
               player.isPoliceRevealed
-                ? 'bg-blue-900/60 border-2 border-blue-400'
-                : 'bg-[#0B1019] border border-white/15'
+                ? 'bg-[#EBF2FA] border-2 border-[#173B67]'
+                : 'bg-[#FAF8F2] border border-[#D8BD6A]/60'
             }`}
           >
             {player.avatar}
@@ -90,27 +90,25 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
 
           {/* Host Crown Icon */}
           {player.isHost && (
-            <div className="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-[#D4AF37] text-black flex items-center justify-center shadow-md">
+            <div className="absolute -top-1 -left-1 w-6 h-6 rounded-full bg-[#C9A227] text-white flex items-center justify-center shadow-sm">
               <Crown className="w-3.5 h-3.5 fill-current" />
             </div>
           )}
 
           {/* Current Player (YOU) Tag */}
           {isCurrentPlayer && (
-            <div className="absolute -bottom-2 -right-1 px-1.5 py-0.5 rounded-full bg-[#D4AF37] text-black text-[9px] font-bold font-cinzel">
+            <div className="absolute -bottom-1 -right-1 px-1.5 py-0.2 rounded-full bg-[#173B67] text-white text-[9px] font-bold font-playfair shadow-sm">
               YOU
             </div>
           )}
         </div>
 
-        {/* Player Name */}
+        {/* Player Name in Royal Blue */}
         <div className="w-full text-center">
-          <div className="flex items-center justify-center gap-1">
-            <span className="font-semibold text-xs md:text-sm text-white truncate max-w-[100px]">
-              {player.name}
-            </span>
-          </div>
-          <span className="text-[10px] text-slate-400 font-mono font-medium block">
+          <span className="font-playfair font-black text-xs md:text-sm text-[#173B67] truncate block max-w-[110px] mx-auto">
+            {player.name}
+          </span>
+          <span className="text-[10px] text-[#5F6872] font-mono font-bold block mt-0.5">
             {player.score} pts
           </span>
         </div>
@@ -120,15 +118,15 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
           {showTrueRole && trueRoleConfig ? (
             /* Round Finished: True Role Revealed */
             <div
-              className="py-1 px-2 rounded-xl text-center flex items-center justify-center gap-1.5"
+              className="py-1 px-2 rounded-xl text-center flex items-center justify-center gap-1.5 shadow-sm"
               style={{
                 backgroundColor: trueRoleConfig.badgeBg,
-                border: `1px solid ${trueRoleConfig.borderColor}60`,
+                border: `1px solid ${trueRoleConfig.borderColor}`,
               }}
             >
               <span className="text-xs">{trueRoleConfig.emoji}</span>
               <span
-                className="text-[10px] md:text-xs font-cinzel font-bold tracking-wide"
+                className="text-[10px] md:text-xs font-playfair font-bold tracking-wide"
                 style={{ color: trueRoleConfig.color }}
               >
                 {trueRoleConfig.name}
@@ -136,25 +134,25 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
             </div>
           ) : player.isPoliceRevealed ? (
             /* Police Public Announcement */
-            <div className="py-1 px-2 rounded-xl bg-blue-600/30 border border-blue-400/80 text-blue-300 text-center flex items-center justify-center gap-1 shadow-[0_0_10px_rgba(59,130,246,0.4)]">
-              <Shield className="w-3 h-3 text-blue-400 fill-current" />
-              <span className="text-[10px] md:text-xs font-cinzel font-bold text-white tracking-wider">
+            <div className="py-1 px-2 rounded-xl bg-[#173B67] text-white text-center flex items-center justify-center gap-1 shadow-sm border border-[#D8BD6A]">
+              <Shield className="w-3 h-3 text-[#D8BD6A] fill-[#D8BD6A]" />
+              <span className="text-[10px] md:text-xs font-playfair font-black tracking-wider">
                 POLICE
               </span>
             </div>
           ) : isCurrentPlayer && player.role ? (
             /* Current Player's own card indicator */
-            <div className="py-1 px-2 rounded-xl bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-center flex items-center justify-center gap-1">
-              <Lock className="w-3 h-3 text-[#D4AF37]" />
-              <span className="text-[10px] font-cinzel font-bold text-[#D4AF37] truncate">
+            <div className="py-1 px-2 rounded-xl bg-[#FAF3DE] border border-[#C9A227] text-center flex items-center justify-center gap-1">
+              <Lock className="w-3 h-3 text-[#C9A227]" />
+              <span className="text-[10px] font-playfair font-bold text-[#173B67] truncate">
                 YOUR SECRET
               </span>
             </div>
           ) : (
             /* Other player: STRICTLY HIDDEN */
-            <div className="py-1 px-2 rounded-xl bg-white/5 border border-white/10 text-slate-400 text-center flex items-center justify-center gap-1">
-              <Lock className="w-3 h-3 text-slate-400" />
-              <span className="text-[10px] font-cinzel font-semibold tracking-wider text-slate-300">
+            <div className="py-1 px-2 rounded-xl bg-[#FAF8F2] border border-[#E2D7C3] text-[#5F6872] text-center flex items-center justify-center gap-1">
+              <Lock className="w-3 h-3 text-[#5F6872]" />
+              <span className="text-[10px] font-playfair font-bold tracking-wider text-[#5F6872]">
                 SECRET
               </span>
             </div>

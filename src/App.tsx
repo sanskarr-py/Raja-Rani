@@ -463,7 +463,7 @@ export function App() {
   const currentPlayer = room?.players.find((p) => p.id === currentPlayerId);
 
   return (
-    <div className="relative min-h-screen bg-[#070A0F] text-[#F8FAFC] flex flex-col font-sans overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#FAF8F2] text-[#263238] flex flex-col font-sans overflow-x-hidden">
       {/* Background Ambience */}
       <ParticleBackground />
 

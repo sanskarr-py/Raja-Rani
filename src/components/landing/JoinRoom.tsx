@@ -28,7 +28,7 @@ export const JoinRoom: React.FC<JoinRoomProps> = ({ onBack, onJoinRoom }) => {
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="w-full max-w-md p-6 md:p-8 rounded-3xl bg-[#0E1522] border border-[#3B82F6]/30 shadow-2xl backdrop-blur-xl text-slate-100"
+        className="w-full max-w-md p-6 md:p-8 rounded-3xl bg-white border-2 border-[#D8BD6A] shadow-[0_16px_40px_rgba(23,59,103,0.1)] text-[#263238]"
       >
         {/* Top Back & Title */}
         <div className="flex items-center justify-between mb-6">
@@ -37,12 +37,12 @@ export const JoinRoom: React.FC<JoinRoomProps> = ({ onBack, onJoinRoom }) => {
               sound.playButtonClick();
               onBack();
             }}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-[#5F6872] hover:text-[#173B67] hover:bg-[#F3EDE1] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <h2 className="font-cinzel text-xl font-bold text-white tracking-wide flex items-center gap-2">
-            <Users className="w-5 h-5 text-[#3B82F6]" /> Join Royal Court
+          <h2 className="font-playfair text-xl font-bold text-[#173B67] tracking-wide flex items-center gap-2">
+            <Users className="w-5 h-5 text-[#173B67]" /> Join Royal Court
           </h2>
           <div className="w-9" />
         </div>
@@ -50,7 +50,7 @@ export const JoinRoom: React.FC<JoinRoomProps> = ({ onBack, onJoinRoom }) => {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Room Code Input */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2 font-cinzel">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] mb-2 font-sans">
               Enter 6-Digit Room Code
             </label>
             <input
@@ -60,13 +60,13 @@ export const JoinRoom: React.FC<JoinRoomProps> = ({ onBack, onJoinRoom }) => {
               value={roomCode}
               onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
               placeholder="e.g. R7K9XP"
-              className="w-full px-4 py-3.5 rounded-2xl bg-[#141D2C] border-2 border-white/10 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/30 text-center text-white placeholder-slate-500 font-mono font-bold tracking-widest text-lg uppercase outline-none transition-all"
+              className="w-full px-4 py-3.5 rounded-2xl bg-[#FAF8F2] border-2 border-[#D8BD6A]/70 focus:border-[#173B67] focus:ring-2 focus:ring-[#173B67]/20 text-center text-[#173B67] placeholder-slate-400 font-mono font-black tracking-widest text-lg uppercase outline-none transition-all"
             />
           </div>
 
           {/* Avatar Selector */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2 font-cinzel">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] mb-2 font-sans">
               Choose Your Avatar
             </label>
             <div className="grid grid-cols-6 gap-2">
@@ -80,8 +80,8 @@ export const JoinRoom: React.FC<JoinRoomProps> = ({ onBack, onJoinRoom }) => {
                   }}
                   className={`h-11 rounded-xl flex items-center justify-center text-xl transition-all cursor-pointer ${
                     selectedAvatar === av
-                      ? 'bg-[#3B82F6] border-2 border-white scale-110 shadow-[0_0_15px_rgba(59,130,246,0.6)]'
-                      : 'bg-[#182335] border border-white/10 hover:border-[#3B82F6]/50 hover:bg-[#202e45]'
+                      ? 'bg-[#FAF3DE] border-2 border-[#C9A227] scale-110 shadow-md'
+                      : 'bg-[#FAF8F2] border border-[#E2D7C3] hover:border-[#D8BD6A] hover:bg-[#F3EDE1]'
                   }`}
                 >
                   {av}
@@ -92,7 +92,7 @@ export const JoinRoom: React.FC<JoinRoomProps> = ({ onBack, onJoinRoom }) => {
 
           {/* Player Nickname */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2 font-cinzel">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] mb-2 font-sans">
               Your Court Nickname
             </label>
             <input
@@ -102,17 +102,17 @@ export const JoinRoom: React.FC<JoinRoomProps> = ({ onBack, onJoinRoom }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Aayush"
-              className="w-full px-4 py-3 rounded-2xl bg-[#141D2C] border border-white/10 focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/30 text-white placeholder-slate-500 font-medium text-sm outline-none transition-all"
+              className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F2] border border-[#D8BD6A]/60 focus:border-[#173B67] focus:ring-2 focus:ring-[#173B67]/20 text-[#173B67] placeholder-slate-400 font-semibold text-sm outline-none transition-all"
             />
           </div>
 
           {/* Submit Button */}
           <Button
             type="submit"
-            variant="police"
+            variant="primary"
             size="lg"
             fullWidth
-            rightIcon={<LogIn className="w-4 h-4" />}
+            rightIcon={<LogIn className="w-4 h-4 text-[#D8BD6A]" />}
           >
             Enter Royal Chamber
           </Button>

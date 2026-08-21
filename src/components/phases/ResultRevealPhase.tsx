@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { CheckCircle2, XCircle, Award, ArrowRight } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Award, ArrowRight } from 'lucide-react';
 import { ROLES_CONFIG, type GameRoom } from '../../types/game';
 import { Button } from '../common/Button';
 import { sound } from '../../utils/sound';
@@ -23,13 +23,12 @@ export const ResultRevealPhase: React.FC<ResultRevealPhaseProps> = ({
   useEffect(() => {
     if (isCorrect) {
       sound.playCorrectGuess();
-      // Fire celebratory royal confetti
       try {
         confetti({
-          particleCount: 120,
-          spread: 80,
+          particleCount: 110,
+          spread: 75,
           origin: { y: 0.6 },
-          colors: ['#D4AF37', '#3B82F6', '#10B981', '#F59E0B'],
+          colors: ['#C9A227', '#173B67', '#D8BD6A', '#234F7D'],
         });
       } catch {
         // ignore
@@ -40,67 +39,73 @@ export const ResultRevealPhase: React.FC<ResultRevealPhaseProps> = ({
   }, [isCorrect]);
 
   return (
-    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-8 z-10 max-w-2xl mx-auto w-full text-center">
+    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-8 z-10 max-w-2xl mx-auto w-full text-center text-[#263238]">
       {/* Top Banner Status */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, type: 'spring' }}
         className="w-full"
       >
         {isCorrect ? (
-          <div className="p-6 rounded-3xl bg-emerald-950/60 border-2 border-emerald-500 shadow-[0_0_40px_rgba(16,185,129,0.4)] flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-400 flex items-center justify-center mb-3">
+          <div className="p-6 md:p-8 rounded-3xl bg-white border-2 border-emerald-600 shadow-[0_12px_40px_rgba(16,185,129,0.15)] flex flex-col items-center">
+            <div className="w-16 h-16 rounded-full bg-emerald-50 border-2 border-emerald-500 text-emerald-600 flex items-center justify-center mb-3">
               <CheckCircle2 className="w-9 h-9" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-cinzel font-black text-emerald-400 tracking-wide">
-              🎉 CHOR CAUGHT!
+            <h2 className="text-3xl md:text-4xl font-playfair font-black text-emerald-700 tracking-wide">
+              CHOR CAUGHT! 🎉
             </h2>
-            <p className="text-sm text-slate-200 mt-1">
-              <strong className="text-white">{policePlayer?.name}</strong> successfully apprehended the thief{' '}
-              <strong className="text-emerald-300">{accusedPlayer?.name}</strong>!
+            <p className="text-sm text-[#5F6872] mt-1.5 font-medium">
+              <strong className="text-[#173B67]">{policePlayer?.name}</strong> correctly identified the Chor <strong className="text-emerald-700 font-bold">{accusedPlayer?.name}</strong>.
             </p>
+            <div className="flex items-center gap-6 mt-4 pt-4 border-t border-[#E2D7C3] text-sm font-playfair font-bold">
+              <span className="text-emerald-700 font-extrabold">👮 Police +500</span>
+              <span className="text-slate-400">🥷 Chor +0</span>
+            </div>
           </div>
         ) : (
-          <div className="p-6 rounded-3xl bg-rose-950/60 border-2 border-rose-500 shadow-[0_0_40px_rgba(239,68,68,0.4)] flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-rose-500/20 border border-rose-400 text-rose-400 flex items-center justify-center mb-3">
-              <XCircle className="w-9 h-9" />
+          <div className="p-6 md:p-8 rounded-3xl bg-white border-2 border-[#B63A32] shadow-[0_12px_40px_rgba(182,58,50,0.15)] flex flex-col items-center">
+            <div className="w-16 h-16 rounded-full bg-[#FDF2F1] border-2 border-[#B63A32] text-[#B63A32] flex items-center justify-center mb-3">
+              <AlertCircle className="w-9 h-9" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-cinzel font-black text-rose-400 tracking-wide">
-              💀 WRONG SUSPECT!
+            <h2 className="text-3xl md:text-4xl font-playfair font-black text-[#B63A32] tracking-wide">
+              WRONG SUSPECT
             </h2>
-            <p className="text-sm text-slate-200 mt-1">
-              <strong className="text-white">{accusedPlayer?.name}</strong> was innocent! The real Chor was{' '}
-              <strong className="text-rose-300">{chorPlayer?.name}</strong> who escapes with the bounty!
+            <p className="text-sm text-[#5F6872] mt-1.5 font-medium">
+              <strong className="text-[#173B67]">{accusedPlayer?.name}</strong> was innocent! The real Chor was <strong className="text-[#173B67]">{chorPlayer?.name}</strong> who escaped.
             </p>
+            <div className="flex items-center gap-6 mt-4 pt-4 border-t border-[#E2D7C3] text-sm font-playfair font-bold">
+              <span className="text-slate-400">👮 Police +0</span>
+              <span className="text-[#B63A32] font-extrabold">🥷 Chor +500</span>
+            </div>
           </div>
         )}
       </motion.div>
 
-      {/* Round Role Points Breakdown */}
+      {/* Round Role Points Breakdown Table */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="w-full my-6 p-4 md:p-6 rounded-3xl bg-[#0E1522]/90 border border-white/10 shadow-xl"
+        className="w-full my-6 p-5 md:p-6 rounded-3xl bg-white border-2 border-[#D8BD6A] shadow-[0_8px_24px_rgba(23,59,103,0.06)]"
       >
-        <h3 className="font-cinzel text-base font-bold text-[#D4AF37] mb-3 flex items-center justify-center gap-2">
-          <Award className="w-4 h-4" /> Round Points Awarded
+        <h3 className="font-playfair text-base font-bold text-[#173B67] mb-3.5 flex items-center justify-center gap-2">
+          <Award className="w-4 h-4 text-[#C9A227]" /> Round Points Awarded
         </h3>
 
-        <div className="space-y-2.5">
+        <div className="space-y-2">
           {room.players.map((player) => {
             const role = player.role ? ROLES_CONFIG[player.role] : null;
             return (
               <div
                 key={player.id}
-                className="flex items-center justify-between p-3 rounded-2xl bg-[#141D2C] border border-white/5"
+                className="flex items-center justify-between p-3 rounded-2xl bg-[#FAF8F2] border border-[#E2D7C3]"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{player.avatar}</span>
                   <div className="text-left">
-                    <span className="font-bold text-sm text-white block">{player.name}</span>
-                    <span className="text-xs text-slate-400 flex items-center gap-1">
+                    <span className="font-playfair font-black text-sm text-[#173B67] block">{player.name}</span>
+                    <span className="text-xs text-[#5F6872] flex items-center gap-1 font-semibold">
                       <span>{role?.emoji}</span>
                       <span>{role?.name}</span>
                     </span>
@@ -110,7 +115,7 @@ export const ResultRevealPhase: React.FC<ResultRevealPhaseProps> = ({
                 <div className="text-right">
                   <span
                     className={`font-mono font-bold text-sm md:text-base ${
-                      player.roundScore > 0 ? 'text-emerald-400' : 'text-slate-500'
+                      player.roundScore > 0 ? 'text-emerald-700 font-extrabold' : 'text-slate-400'
                     }`}
                   >
                     +{player.roundScore} pts
@@ -126,20 +131,20 @@ export const ResultRevealPhase: React.FC<ResultRevealPhaseProps> = ({
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 0.5 }}
         className="w-full"
       >
         <Button
-          variant="gold"
+          variant="primary"
           size="lg"
           fullWidth
           onClick={() => {
             sound.playButtonClick();
             onViewScoreboard();
           }}
-          rightIcon={<ArrowRight className="w-5 h-5" />}
+          rightIcon={<ArrowRight className="w-5 h-5 text-[#D8BD6A]" />}
         >
-          View Royal Scoreboard & Leaderboard
+          View Royal Scoreboard
         </Button>
       </motion.div>
     </div>

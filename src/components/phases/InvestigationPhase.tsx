@@ -18,7 +18,7 @@ export const InvestigationPhase: React.FC<InvestigationPhaseProps> = ({
   currentPlayerId,
   onAccusePlayer,
 }) => {
-  const [timeLeft, setTimeLeft] = useState(25);
+  const [timeLeft, setTimeLeft] = useState(20);
   const [selectedSuspect, setSelectedSuspect] = useState<Player | null>(null);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -31,7 +31,6 @@ export const InvestigationPhase: React.FC<InvestigationPhaseProps> = ({
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
-          // If time expires and current player is police or bot is police, auto choose
           if (isPolice) {
             const suspects = room.players.filter((p) => p.id !== room.policeId);
             const randomPick = suspects[Math.floor(Math.random() * suspects.length)];
@@ -81,40 +80,33 @@ export const InvestigationPhase: React.FC<InvestigationPhaseProps> = ({
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-6 z-10 w-full">
+    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-6 z-10 w-full text-[#263238]">
       {/* Top Banner Status */}
       <motion.div
-        initial={{ opacity: 0, y: -15 }}
+        initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-4xl flex items-center justify-between p-3.5 md:p-4 rounded-2xl bg-[#0E1522]/90 border border-white/10 shadow-lg backdrop-blur-md mb-4"
+        className="w-full max-w-4xl flex items-center justify-between p-4 rounded-2xl bg-white border-2 border-[#D8BD6A] shadow-[0_6px_24px_rgba(23,59,103,0.06)] mb-4"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-blue-500/20 border border-blue-400/40 text-blue-400">
+          <div className="p-2.5 rounded-xl bg-[#EBF2FA] border border-[#234F7D] text-[#173B67]">
             <Shield className="w-5 h-5" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="font-cinzel font-bold text-sm text-white">
-                {policePlayer?.name || 'Police'} is on the Case
-              </span>
-              <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold">
-                INVESTIGATION
-              </span>
-            </div>
-            <p className="text-xs text-slate-400">
-              {isPolice
-                ? 'Click on any courtier to accuse them of being the Chor!'
-                : 'Police is examining the court. Maintain your poker face!'}
+            <h2 className="font-playfair font-black text-base md:text-lg text-[#173B67] leading-tight">
+              FIND THE CHOR
+            </h2>
+            <p className="text-xs text-[#5F6872] font-semibold">
+              {policePlayer?.name} has 20 seconds to decide.
             </p>
           </div>
         </div>
 
-        {/* Countdown Ring */}
-        <div className="flex items-center gap-2 bg-[#141D2C] px-3.5 py-1.5 rounded-2xl border border-white/10">
-          <Clock className={`w-4 h-4 ${timeLeft <= 5 ? 'text-red-400 animate-spin' : 'text-[#D4AF37]'}`} />
+        {/* Elegant Circular / Capsule Countdown Timer */}
+        <div className="flex items-center gap-2 bg-[#FAF3DE] px-4 py-2 rounded-2xl border-2 border-[#D8BD6A] shadow-sm">
+          <Clock className={`w-4 h-4 ${timeLeft <= 5 ? 'text-[#B63A32] animate-spin' : 'text-[#173B67]'}`} />
           <span
-            className={`font-mono font-bold text-sm md:text-base ${
-              timeLeft <= 5 ? 'text-red-400 animate-pulse' : 'text-white'
+            className={`font-mono font-black text-sm md:text-base ${
+              timeLeft <= 5 ? 'text-[#B63A32] animate-pulse' : 'text-[#173B67]'
             }`}
           >
             00:{timeLeft.toString().padStart(2, '0')}
@@ -132,14 +124,14 @@ export const InvestigationPhase: React.FC<InvestigationPhaseProps> = ({
         onSelectAccused={handleSuspectClick}
         showTrueRoles={false}
         centerContent={
-          <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-[#070A0F]/80 border border-[#D4AF37]/20 shadow-inner max-w-xs">
-            <span className="text-xs font-cinzel font-bold text-[#D4AF37] uppercase tracking-widest mb-1">
+          <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/90 border border-[#D8BD6A] shadow-sm max-w-xs">
+            <span className="text-xs font-playfair font-black text-[#173B67] uppercase tracking-widest mb-1">
               {isPolice ? '🎯 YOUR MISSION' : '🔍 IN PROGRESS'}
             </span>
-            <p className="text-xs text-slate-200 font-medium leading-tight">
+            <p className="text-xs text-[#5F6872] font-semibold leading-tight">
               {isPolice
-                ? 'Identify the 🥷 Chor from the suspects below'
-                : 'The Inspector is observing all gestures and words...'}
+                ? 'Select a suspected courtier around the table'
+                : 'Police is inspecting the royal court...'}
             </p>
           </div>
         }

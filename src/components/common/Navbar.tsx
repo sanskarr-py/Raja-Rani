@@ -35,22 +35,22 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <header className="relative z-30 w-full px-4 py-3 md:px-8 border-b border-white/10 bg-[#070A0F]/90 backdrop-blur-md">
+      <header className="relative z-30 w-full px-4 py-3 md:px-8 border-b border-[#D8BD6A]/35 bg-[#FAF8F2]/95 backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo & Title */}
           {showLogo ? (
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#997A15] p-0.5 shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center">
-                <div className="w-full h-full bg-[#0B1019] rounded-[14px] flex items-center justify-center">
-                  <Crown className="w-5 h-5 text-[#D4AF37]" />
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#C9A227] to-[#D8BD6A] p-0.5 shadow-[0_2px_10px_rgba(201,162,39,0.3)] flex items-center justify-center">
+                <div className="w-full h-full bg-[#FAF8F2] rounded-[14px] flex items-center justify-center">
+                  <Crown className="w-5 h-5 text-[#C9A227]" />
                 </div>
               </div>
               <div>
-                <h1 className="text-lg md:text-xl font-cinzel font-bold tracking-wider gold-gradient-text leading-tight">
+                <h1 className="text-lg md:text-xl font-playfair font-black tracking-wider text-[#173B67] leading-tight">
                   RAJA RANI
                 </h1>
-                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
-                  Trust Nobody
+                <p className="text-[10px] uppercase tracking-widest text-[#5F6872] font-semibold">
+                  The Royal Game of Deception
                 </p>
               </div>
             </div>
@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Center Info: Round & Room Code */}
           <div className="flex items-center gap-2 md:gap-4">
             {round !== undefined && round > 0 && (
-              <div className="px-3 py-1 rounded-full bg-[#111722] border border-[#D4AF37]/30 text-xs font-cinzel font-bold text-[#D4AF37] shadow-sm">
+              <div className="px-3.5 py-1 rounded-full bg-[#FAF3DE] border border-[#D8BD6A] text-xs font-playfair font-bold text-[#173B67] shadow-sm">
                 ROUND {round}
               </div>
             )}
@@ -70,16 +70,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 onClick={copyCode}
                 title="Click to copy room code"
-                className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#111722] hover:bg-[#182232] border border-white/10 hover:border-[#D4AF37]/40 text-xs font-mono text-slate-200 transition-all cursor-pointer group"
+                className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white hover:bg-[#FAF3DE] border border-[#D8BD6A]/60 hover:border-[#C9A227] text-xs font-mono text-[#263238] transition-all cursor-pointer shadow-sm group"
               >
-                <span className="text-slate-400 text-[10px]">ROOM</span>
-                <span className="font-bold tracking-wider text-white group-hover:text-[#D4AF37]">
+                <span className="text-[#5F6872] text-[10px] font-bold">ROOM</span>
+                <span className="font-bold tracking-wider text-[#173B67] group-hover:text-[#C9A227]">
                   {roomCode}
                 </span>
                 {copied ? (
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
                 ) : (
-                  <Copy className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
+                  <Copy className="w-3.5 h-3.5 text-[#5F6872] group-hover:text-[#173B67]" />
                 )}
               </button>
             )}
@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setIsRulesOpen(true);
               }}
               title="Game Rules"
-              className="p-2 rounded-xl bg-[#111722] hover:bg-[#182232] border border-white/10 hover:border-[#D4AF37]/40 text-slate-300 hover:text-white transition-all cursor-pointer"
+              className="p-2 rounded-xl bg-white hover:bg-[#FAF3DE] border border-[#D8BD6A]/50 hover:border-[#C9A227] text-[#173B67] transition-all cursor-pointer shadow-sm"
             >
               <HelpCircle className="w-4 h-4 md:w-5 md:h-5" />
             </button>
@@ -103,12 +103,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={toggleSound}
               title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-              className="p-2 rounded-xl bg-[#111722] hover:bg-[#182232] border border-white/10 hover:border-[#D4AF37]/40 text-slate-300 hover:text-white transition-all cursor-pointer"
+              className="p-2 rounded-xl bg-white hover:bg-[#FAF3DE] border border-[#D8BD6A]/50 hover:border-[#C9A227] text-[#173B67] transition-all cursor-pointer shadow-sm"
             >
               {isMuted ? (
-                <VolumeX className="w-4 h-4 md:w-5 md:h-5 text-rose-400" />
+                <VolumeX className="w-4 h-4 md:w-5 md:h-5 text-[#B63A32]" />
               ) : (
-                <Volume2 className="w-4 h-4 md:w-5 md:h-5 text-[#D4AF37]" />
+                <Volume2 className="w-4 h-4 md:w-5 md:h-5 text-[#C9A227]" />
               )}
             </button>
 
@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onLeaveRoom();
                 }}
                 title="Leave Room"
-                className="p-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 hover:text-red-300 transition-all cursor-pointer ml-1"
+                className="p-2 rounded-xl bg-[#FDF2F1] hover:bg-[#FCE8E6] border border-[#D8726A]/40 text-[#B63A32] transition-all cursor-pointer shadow-sm ml-1"
               >
                 <LogOut className="w-4 h-4 md:w-5 md:h-5" />
               </button>

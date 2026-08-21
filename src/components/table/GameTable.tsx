@@ -24,19 +24,20 @@ export const GameTable: React.FC<GameTableProps> = ({
 }) => {
   return (
     <div className="relative w-full max-w-5xl mx-auto py-4 px-2 flex flex-col items-center">
-      {/* Outer Table Surface */}
-      <div className="relative w-full min-h-[380px] md:min-h-[440px] rounded-[48px] bg-gradient-to-b from-[#0E1624] via-[#111A2E] to-[#0A101C] border-2 border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_0_80px_rgba(0,0,0,0.6)] p-6 md:p-10 flex flex-col justify-between items-center overflow-hidden">
-        {/* Table Felt Inner Oval Glow */}
-        <div className="absolute inset-4 md:inset-8 rounded-[36px] border border-[#D4AF37]/15 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.06)_0%,transparent_70%)] pointer-events-none" />
+      {/* Outer Luxury Board Game Table Surface */}
+      <div className="relative w-full min-h-[380px] md:min-h-[440px] rounded-[48px] bg-gradient-to-b from-[#F7F3EA] via-[#F3EDE1] to-[#ECE2D0] border-2 border-[#D8BD6A] shadow-[0_20px_50px_rgba(23,59,103,0.09),0_1px_3px_rgba(201,162,39,0.15)] p-6 md:p-10 flex flex-col justify-between items-center overflow-hidden">
+        {/* Table Felt Inner Oval Glow with Subtle Royal Blue Accent */}
+        <div className="absolute inset-3 md:inset-6 rounded-[38px] border-2 border-[#173B67]/15 bg-[radial-gradient(ellipse_at_center,#FFFDF8_0%,#F3EDE1_75%)] pointer-events-none shadow-inner" />
+        <div className="absolute inset-5 md:inset-8 rounded-[32px] border border-dashed border-[#D8BD6A]/40 pointer-events-none" />
 
         {/* Center Court Emblem / Content */}
         <div className="relative z-10 my-auto py-4 flex flex-col items-center text-center">
           {centerContent ? (
             centerContent
           ) : (
-            <div className="opacity-25 flex flex-col items-center pointer-events-none">
+            <div className="opacity-40 flex flex-col items-center pointer-events-none">
               <span className="text-4xl">👑</span>
-              <span className="font-cinzel text-xs tracking-widest text-[#D4AF37] mt-1">
+              <span className="font-playfair text-xs font-bold tracking-widest text-[#173B67] mt-1">
                 ROYAL COURT OF NEPAL
               </span>
             </div>

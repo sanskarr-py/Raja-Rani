@@ -33,44 +33,44 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-8 z-10 max-w-5xl mx-auto w-full">
+    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-8 z-10 max-w-5xl mx-auto w-full text-[#263238]">
       {/* Top Chamber Header & Room Code Display */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full flex flex-col md:flex-row items-center justify-between gap-4 p-4 md:p-6 rounded-3xl bg-[#0E1522]/90 border border-[#D4AF37]/30 shadow-2xl backdrop-blur-xl"
+        className="w-full flex flex-col md:flex-row items-center justify-between gap-4 p-5 md:p-6 rounded-3xl bg-white border-2 border-[#D8BD6A] shadow-[0_8px_30px_rgba(23,59,103,0.08)]"
       >
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-[#D4AF37]/15 border border-[#D4AF37]/40 flex items-center justify-center text-2xl">
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-[#FAF3DE] border border-[#D8BD6A] flex items-center justify-center text-2xl shadow-sm">
             👑
           </div>
           <div>
-            <h2 className="font-cinzel text-lg md:text-xl font-bold text-white tracking-wide">
-              Royal Waiting Hall
+            <h2 className="font-playfair text-lg md:text-xl font-bold text-[#173B67] tracking-wide">
+              Royal Waiting Chamber
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[#5F6872] font-medium">
               Gathering courtiers for Raja Rani • {room.players.length} Courtiers Assembled
             </p>
           </div>
         </div>
 
         {/* Room Code Badge */}
-        <div className="flex items-center gap-3 bg-[#141C2B] p-2 pr-4 rounded-2xl border border-white/10">
-          <div className="px-3 py-1.5 rounded-xl bg-[#D4AF37]/20 border border-[#D4AF37]/40 font-mono text-base md:text-lg font-bold text-[#D4AF37] tracking-wider">
+        <div className="flex items-center gap-3 bg-[#FAF8F2] p-2 pr-4 rounded-2xl border border-[#D8BD6A]/70 shadow-sm">
+          <div className="px-3.5 py-1.5 rounded-xl bg-[#FAF3DE] border border-[#D8BD6A] font-mono text-base md:text-lg font-black text-[#173B67] tracking-wider">
             {room.code}
           </div>
           <button
             onClick={copyRoomCode}
-            className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-bold text-[#173B67] hover:text-[#C9A227] transition-colors cursor-pointer"
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span className="text-emerald-400">Copied!</span>
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span className="text-emerald-700">Copied!</span>
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4 text-[#D4AF37]" />
+                <Copy className="w-4 h-4 text-[#C9A227]" />
                 <span>Copy Code</span>
               </>
             )}
@@ -81,18 +81,18 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
       {/* Center Courtiers Chamber Grid */}
       <div className="w-full my-8">
         <div className="flex items-center justify-between mb-4 px-2">
-          <div className="flex items-center gap-2 text-xs md:text-sm font-cinzel font-bold text-slate-300">
-            <Users className="w-4 h-4 text-[#D4AF37]" />
+          <div className="flex items-center gap-2 text-xs md:text-sm font-playfair font-bold text-[#173B67]">
+            <Users className="w-4 h-4 text-[#C9A227]" />
             <span>Courtiers in Chamber ({room.players.length}/8)</span>
           </div>
 
           {/* Target Score Pill */}
-          <div className="text-xs font-cinzel font-semibold text-[#D4AF37] bg-[#D4AF37]/10 px-3 py-1 rounded-full border border-[#D4AF37]/20">
+          <div className="text-xs font-playfair font-bold text-[#173B67] bg-[#FAF3DE] px-3.5 py-1 rounded-full border border-[#D8BD6A]">
             Target: {room.targetScore > 0 ? `${room.targetScore.toLocaleString()} pts` : 'Endless'}
           </div>
         </div>
 
-        {/* Floating Player Cards Grid */}
+        {/* Player Cards Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
           {room.players.map((player, idx) => {
             const isMe = player.id === currentPlayerId;
@@ -104,18 +104,18 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
                 className={`relative rounded-2xl p-4 flex flex-col items-center justify-between text-center transition-all ${
                   isMe
-                    ? 'bg-[#182335] border-2 border-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.3)]'
-                    : 'bg-[#111722] border border-white/10 hover:border-white/20'
+                    ? 'bg-[#FAF3DE]/80 border-2 border-[#C9A227] shadow-[0_4px_16px_rgba(201,162,39,0.2)]'
+                    : 'bg-white border border-[#E2D7C3] hover:border-[#D8BD6A] shadow-sm'
                 }`}
               >
                 {/* Host Crown or Bot Badge */}
                 <div className="absolute top-2.5 left-2.5">
                   {player.isHost ? (
-                    <div className="p-1 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37]">
+                    <div className="p-1 rounded-lg bg-[#FAF3DE] border border-[#D8BD6A] text-[#C9A227]">
                       <Crown className="w-3.5 h-3.5 fill-current" />
                     </div>
                   ) : player.isBot ? (
-                    <div className="p-1 rounded-lg bg-blue-500/20 border border-blue-500/40 text-blue-400">
+                    <div className="p-1 rounded-lg bg-[#EBF2FA] border border-[#98B4D4] text-[#173B67]">
                       <Bot className="w-3.5 h-3.5" />
                     </div>
                   ) : null}
@@ -124,7 +124,7 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
                 {/* Ready Status indicator */}
                 <div className="absolute top-2.5 right-2.5">
                   {player.isReady ? (
-                    <div className="p-1 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-400">
+                    <div className="p-1 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-600">
                       <ShieldCheck className="w-3.5 h-3.5" />
                     </div>
                   ) : (
@@ -133,16 +133,16 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
                 </div>
 
                 {/* Avatar */}
-                <div className="w-16 h-16 rounded-2xl bg-[#0B1019] border border-white/10 flex items-center justify-center text-3xl my-2 shadow-inner">
+                <div className="w-16 h-16 rounded-2xl bg-[#FAF8F2] border border-[#E2D7C3] flex items-center justify-center text-3xl my-2 shadow-inner">
                   {player.avatar}
                 </div>
 
                 {/* Name */}
                 <div className="w-full">
-                  <span className="font-semibold text-sm text-white truncate block max-w-full">
+                  <span className="font-playfair font-bold text-sm text-[#173B67] truncate block max-w-full">
                     {player.name}
                   </span>
-                  <span className="text-[11px] text-slate-400 block mt-0.5">
+                  <span className="text-[11px] text-[#5F6872] block mt-0.5 font-medium">
                     {player.isHost ? 'Host' : player.isBot ? 'AI Courtier' : isMe ? 'You' : 'Courtier'}
                   </span>
                 </div>
@@ -150,11 +150,11 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
                 {/* Ready / You tag */}
                 <div className="mt-3 w-full">
                   {isMe ? (
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#D4AF37] text-black text-[10px] font-bold font-cinzel">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#173B67] text-white text-[10px] font-bold tracking-wider">
                       YOU (READY)
                     </span>
                   ) : (
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-white/5 text-slate-400 text-[10px] font-medium">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#FAF8F2] text-[#5F6872] border border-[#E2D7C3] text-[10px] font-medium">
                       {player.isReady ? 'Ready' : 'Waiting...'}
                     </span>
                   )}
@@ -167,12 +167,12 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
           {Array.from({ length: Math.max(0, 5 - room.players.length) }).map((_, i) => (
             <div
               key={`empty-${i}`}
-              className="rounded-2xl p-4 border border-dashed border-white/10 bg-white/[0.02] flex flex-col items-center justify-center text-slate-600 min-h-[160px]"
+              className="rounded-2xl p-4 border border-dashed border-[#D8BD6A]/50 bg-[#FAF8F2]/50 flex flex-col items-center justify-center text-slate-400 min-h-[160px]"
             >
-              <div className="w-12 h-12 rounded-full border border-dashed border-white/15 flex items-center justify-center text-slate-600 mb-2">
+              <div className="w-12 h-12 rounded-full border border-dashed border-[#D8BD6A]/60 flex items-center justify-center text-[#5F6872] mb-2">
                 <Users className="w-5 h-5" />
               </div>
-              <span className="text-xs font-cinzel text-slate-500">Empty Seat</span>
+              <span className="text-xs font-playfair font-bold text-[#5F6872]">Empty Seat</span>
             </div>
           ))}
         </div>
@@ -180,11 +180,11 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
 
       {/* Bottom Host / Player Controls */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full p-4 md:p-6 rounded-3xl bg-[#0E1522]/90 border border-white/10 shadow-2xl backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4"
+        className="w-full p-4 md:p-6 rounded-3xl bg-white border-2 border-[#D8BD6A] shadow-[0_8px_30px_rgba(23,59,103,0.08)] flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-        {/* Bot Controls (Available for Host or any single player) */}
+        {/* Bot Controls */}
         <div className="flex items-center gap-2 w-full sm:w-auto">
           {isHost && (
             <>
@@ -193,7 +193,7 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
                 size="sm"
                 onClick={onAddBot}
                 disabled={room.players.length >= 8}
-                leftIcon={<UserPlus className="w-4 h-4 text-emerald-400" />}
+                leftIcon={<UserPlus className="w-4 h-4 text-emerald-700" />}
               >
                 + Add AI Bot
               </Button>
@@ -202,7 +202,7 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
                 size="sm"
                 onClick={onRemoveBot}
                 disabled={!room.players.some((p) => p.isBot)}
-                leftIcon={<UserMinus className="w-4 h-4 text-rose-400" />}
+                leftIcon={<UserMinus className="w-4 h-4 text-[#B63A32]" />}
               >
                 - Remove Bot
               </Button>
@@ -215,24 +215,24 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
           {isHost ? (
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
               {!canStart && (
-                <span className="text-xs text-amber-400 font-medium">
+                <span className="text-xs text-amber-700 font-bold">
                   Need at least 4 players (Add {4 - room.players.length} bots or invite friends)
                 </span>
               )}
               <Button
-                variant="gold"
+                variant="primary"
                 size="lg"
                 fullWidth={false}
                 disabled={!canStart}
                 onClick={onStartGame}
-                rightIcon={<Play className="w-5 h-5 fill-current" />}
+                rightIcon={<Play className="w-5 h-5 fill-current text-[#D8BD6A]" />}
               >
                 Start Royal Game
               </Button>
             </div>
           ) : (
-            <div className="flex items-center gap-2 text-sm text-slate-300 font-cinzel">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] animate-ping" />
+            <div className="flex items-center gap-2 text-sm text-[#173B67] font-playfair font-bold">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#C9A227] animate-ping" />
               <span>Waiting for Host to Start the Game...</span>
             </div>
           )}
