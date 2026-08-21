@@ -24,11 +24,11 @@ export const CreateRoom: React.FC<CreateRoomProps> = ({ onBack, onCreateRoom }) 
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-68px)] flex items-center justify-center p-4 z-10">
+    <div className="relative min-h-[calc(100vh-68px)] flex items-center justify-center p-4 z-10 text-[#263238] dark:text-white transition-colors duration-300">
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="w-full max-w-md p-6 md:p-8 rounded-3xl bg-white border-2 border-[#D8BD6A] shadow-[0_16px_40px_rgba(23,59,103,0.1)] text-[#263238]"
+        className="w-full max-w-md p-6 md:p-8 rounded-3xl bg-white dark:bg-[#0E1522] border-2 border-[#D8BD6A] shadow-[0_16px_40px_rgba(23,59,103,0.1)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.6)] transition-colors duration-300"
       >
         {/* Top Back & Title */}
         <div className="flex items-center justify-between mb-6">
@@ -37,11 +37,11 @@ export const CreateRoom: React.FC<CreateRoomProps> = ({ onBack, onCreateRoom }) 
               sound.playButtonClick();
               onBack();
             }}
-            className="p-2 rounded-xl text-[#5F6872] hover:text-[#173B67] hover:bg-[#F3EDE1] transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-[#5F6872] dark:text-slate-400 hover:text-[#173B67] dark:hover:text-white hover:bg-[#F3EDE1] dark:hover:bg-[#141D2B] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <h2 className="font-playfair text-xl font-bold text-[#173B67] tracking-wide flex items-center gap-2">
+          <h2 className="font-playfair text-xl font-bold text-[#173B67] dark:text-white tracking-wide flex items-center gap-2">
             <Crown className="w-5 h-5 text-[#C9A227]" /> Create Royal Room
           </h2>
           <div className="w-9" />
@@ -50,7 +50,7 @@ export const CreateRoom: React.FC<CreateRoomProps> = ({ onBack, onCreateRoom }) 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Avatar Selector */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] mb-2 font-sans">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] dark:text-slate-300 mb-2 font-sans">
               Choose Royal Crest / Avatar
             </label>
             <div className="grid grid-cols-6 gap-2">
@@ -64,8 +64,8 @@ export const CreateRoom: React.FC<CreateRoomProps> = ({ onBack, onCreateRoom }) 
                   }}
                   className={`h-11 rounded-xl flex items-center justify-center text-xl transition-all cursor-pointer ${
                     selectedAvatar === av
-                      ? 'bg-[#FAF3DE] border-2 border-[#C9A227] scale-110 shadow-md'
-                      : 'bg-[#FAF8F2] border border-[#E2D7C3] hover:border-[#D8BD6A] hover:bg-[#F3EDE1]'
+                      ? 'bg-[#FAF3DE] dark:bg-[#C9A227]/20 border-2 border-[#C9A227] scale-110 shadow-md'
+                      : 'bg-[#FAF8F2] dark:bg-[#141D2B] border border-[#E2D7C3] dark:border-[#233348] hover:border-[#D8BD6A] hover:bg-[#F3EDE1] dark:hover:bg-[#1A2536]'
                   }`}
                 >
                   {av}
@@ -76,7 +76,7 @@ export const CreateRoom: React.FC<CreateRoomProps> = ({ onBack, onCreateRoom }) 
 
           {/* Host Nickname Input */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] mb-2 font-sans">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] dark:text-slate-300 mb-2 font-sans">
               Your Court Name
             </label>
             <input
@@ -86,13 +86,13 @@ export const CreateRoom: React.FC<CreateRoomProps> = ({ onBack, onCreateRoom }) 
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Sanskar"
-              className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F2] border border-[#D8BD6A]/60 focus:border-[#173B67] focus:ring-2 focus:ring-[#173B67]/20 text-[#173B67] placeholder-slate-400 font-semibold text-sm outline-none transition-all"
+              className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F2] dark:bg-[#141D2B] border border-[#D8BD6A]/60 dark:border-[#D8BD6A]/30 focus:border-[#173B67] dark:focus:border-[#D8BD6A] focus:ring-2 focus:ring-[#173B67]/20 text-[#173B67] dark:text-white placeholder-slate-400 font-semibold text-sm outline-none transition-all"
             />
           </div>
 
           {/* Target Score Selector */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] mb-2 font-sans flex items-center gap-1.5">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5F6872] dark:text-slate-300 mb-2 font-sans flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-[#C9A227]" /> Victory Target Score
             </label>
             <div className="grid grid-cols-4 gap-2">
@@ -111,15 +111,15 @@ export const CreateRoom: React.FC<CreateRoomProps> = ({ onBack, onCreateRoom }) 
                   }}
                   className={`py-2 px-1 rounded-xl text-xs font-playfair font-bold transition-all cursor-pointer ${
                     targetScore === item.value
-                      ? 'bg-[#173B67] text-white border border-[#D8BD6A] shadow-md'
-                      : 'bg-[#FAF8F2] text-[#5F6872] border border-[#E2D7C3] hover:border-[#D8BD6A]'
+                      ? 'bg-[#173B67] dark:bg-[#D8BD6A] text-white dark:text-[#070A0F] border border-[#D8BD6A] shadow-md'
+                      : 'bg-[#FAF8F2] dark:bg-[#141D2B] text-[#5F6872] dark:text-slate-300 border border-[#E2D7C3] dark:border-[#233348] hover:border-[#D8BD6A]'
                   }`}
                 >
                   {item.label}
                 </button>
               ))}
             </div>
-            <p className="text-[11px] text-[#5F6872] mt-1.5 font-medium">
+            <p className="text-[11px] text-[#5F6872] dark:text-slate-400 mt-1.5 font-medium">
               First player to reach {targetScore > 0 ? `${targetScore.toLocaleString()} points` : 'any score'} wins the grand crown.
             </p>
           </div>

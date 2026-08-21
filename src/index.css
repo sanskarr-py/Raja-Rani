@@ -11,6 +11,12 @@
     background-color: #FAF8F2;
     color: #263238;
     font-family: 'Manrope', 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-color: #070A0F;
+    color: #F8FAFC;
   }
 
   h1, h2, h3, .font-playfair {
@@ -47,20 +53,38 @@
   box-shadow: 0 8px 30px rgba(23, 59, 103, 0.06), 0 1px 3px rgba(201, 162, 39, 0.1);
 }
 
+.dark .luxury-card {
+  background: #111722;
+  border: 1px solid rgba(216, 189, 106, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(201, 162, 39, 0.15);
+}
+
 .luxury-card-cream {
   background: #FDFBF7;
   border: 1px solid rgba(216, 189, 106, 0.4);
   box-shadow: 0 6px 20px rgba(23, 59, 103, 0.05);
 }
 
+.dark .luxury-card-cream {
+  background: #0E1522;
+  border: 1px solid rgba(216, 189, 106, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
 .gold-gradient-text {
-  background: linear-gradient(135deg, #A8841B 0%, #C9A227 50%, #806210 100%);
+  background: linear-gradient(135deg, #C9A227 0%, #E8D9B5 50%, #A8841B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .royal-blue-gradient-text {
   background: linear-gradient(135deg, #173B67 0%, #234F7D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .royal-blue-gradient-text {
+  background: linear-gradient(135deg, #93C5FD 0%, #3B82F6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -75,7 +99,7 @@
   box-shadow: 0 0 0 3px rgba(216, 189, 106, 0.15);
 }
 
-/* Light Royal Scrollbar */
+/* Light & Dark Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -83,6 +107,10 @@
 
 ::-webkit-scrollbar-track {
   background: #F3EDE1;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0B0F17;
 }
 
 ::-webkit-scrollbar-thumb {

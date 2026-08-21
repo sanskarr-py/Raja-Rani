@@ -36,7 +36,7 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-8 z-10 max-w-3xl mx-auto w-full text-[#263238]">
+    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-between p-4 md:p-8 z-10 max-w-3xl mx-auto w-full text-[#263238] dark:text-white transition-colors duration-300">
       {/* Scoreboard Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -47,13 +47,13 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
           <Trophy className="w-4 h-4" />
           <span>Round {room.round} Concluded</span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-playfair font-black text-[#173B67] tracking-wide">
+        <h2 className="text-3xl md:text-4xl font-playfair font-black text-[#173B67] dark:text-white tracking-wide">
           👑 ROUND RESULTS
         </h2>
         {room.targetScore > 0 && (
-          <p className="text-xs text-[#5F6872] mt-1 font-medium">
-            Target to Win: <strong className="text-[#173B67]">{room.targetScore.toLocaleString()} pts</strong> • Leader is at{' '}
-            <strong className="text-emerald-700 font-bold">{leader?.score.toLocaleString()} pts</strong>
+          <p className="text-xs text-[#5F6872] dark:text-slate-400 mt-1 font-medium">
+            Target to Win: <strong className="text-[#173B67] dark:text-[#D8BD6A]">{room.targetScore.toLocaleString()} pts</strong> • Leader is at{' '}
+            <strong className="text-emerald-700 dark:text-emerald-400 font-bold">{leader?.score.toLocaleString()} pts</strong>
           </p>
         )}
       </motion.div>
@@ -63,10 +63,10 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
-        className="w-full my-6 p-4 md:p-6 rounded-3xl bg-white border-2 border-[#D8BD6A] shadow-[0_12px_36px_rgba(23,59,103,0.08)]"
+        className="w-full my-6 p-4 md:p-6 rounded-3xl bg-white dark:bg-[#0E1522] border-2 border-[#D8BD6A] shadow-[0_12px_36px_rgba(23,59,103,0.08)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.5)] transition-colors duration-300"
       >
         {/* Table Header */}
-        <div className="grid grid-cols-12 text-[11px] font-playfair font-black text-[#173B67] uppercase tracking-wider pb-3 border-b-2 border-[#D8BD6A]/40 px-2">
+        <div className="grid grid-cols-12 text-[11px] font-playfair font-black text-[#173B67] dark:text-[#D8BD6A] uppercase tracking-wider pb-3 border-b-2 border-[#D8BD6A]/40 px-2">
           <span className="col-span-2 text-center">Rank</span>
           <span className="col-span-4">Courtier</span>
           <span className="col-span-2 text-center">Role</span>
@@ -75,7 +75,7 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
         </div>
 
         {/* Player Rows */}
-        <div className="divide-y divide-[#E2D7C3] mt-2 space-y-1">
+        <div className="divide-y divide-[#E2D7C3] dark:divide-[#233348] mt-2 space-y-1">
           {sortedPlayers.map((player, idx) => {
             const roleConfig = player.role ? ROLES_CONFIG[player.role] : null;
             const isMe = player.id === currentPlayerId;
@@ -89,15 +89,15 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
                 transition={{ delay: idx * 0.08 }}
                 className={`grid grid-cols-12 items-center p-3 rounded-2xl transition-colors ${
                   isLeader
-                    ? 'bg-[#FAF3DE] border-2 border-[#C9A227] shadow-sm font-bold'
+                    ? 'bg-[#FAF3DE] dark:bg-[#1A2536] border-2 border-[#C9A227] shadow-sm font-bold'
                     : isMe
-                    ? 'bg-[#EBF2FA] border border-[#98B4D4]'
-                    : 'hover:bg-[#FAF8F2]'
+                    ? 'bg-[#EBF2FA] dark:bg-[#141D2B] border border-[#98B4D4] dark:border-[#233348]'
+                    : 'hover:bg-[#FAF8F2] dark:hover:bg-[#141D2B]/50'
                 }`}
               >
                 {/* Rank Badge */}
                 <div className="col-span-2 flex items-center justify-center">
-                  <span className="font-playfair font-black text-base text-[#173B67]">
+                  <span className="font-playfair font-black text-base text-[#173B67] dark:text-white">
                     {getMedal(idx)}
                   </span>
                 </div>
@@ -106,7 +106,7 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
                 <div className="col-span-4 flex items-center gap-2.5 truncate pr-2">
                   <span className="text-xl">{player.avatar}</span>
                   <div className="truncate">
-                    <span className="font-playfair font-bold text-sm text-[#173B67] block truncate">
+                    <span className="font-playfair font-bold text-sm text-[#173B67] dark:text-white block truncate">
                       {player.name}
                     </span>
                     {isMe && (
@@ -138,7 +138,7 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
                 <div className="col-span-2 text-right">
                   <span
                     className={`font-mono font-bold text-xs md:text-sm ${
-                      player.roundScore > 0 ? 'text-emerald-700 font-extrabold' : 'text-slate-400'
+                      player.roundScore > 0 ? 'text-emerald-700 dark:text-emerald-400 font-extrabold' : 'text-slate-400'
                     }`}
                   >
                     +{player.roundScore}
@@ -147,7 +147,7 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
 
                 {/* Total Score */}
                 <div className="col-span-2 text-right">
-                  <span className="font-mono font-black text-sm md:text-base text-[#173B67]">
+                  <span className="font-mono font-black text-sm md:text-base text-[#173B67] dark:text-white">
                     {player.score.toLocaleString()}
                   </span>
                 </div>
@@ -170,7 +170,7 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
             sound.playButtonClick();
             onReturnToLobby();
           }}
-          leftIcon={<RotateCcw className="w-4 h-4 text-[#173B67]" />}
+          leftIcon={<RotateCcw className="w-4 h-4 text-[#173B67] dark:text-[#D8BD6A]" />}
         >
           Return to Lobby
         </Button>
@@ -188,7 +188,7 @@ export const ScoreboardPhase: React.FC<ScoreboardPhaseProps> = ({
             Play Next Round
           </Button>
         ) : (
-          <div className="text-xs text-[#5F6872] font-playfair font-bold flex items-center gap-2">
+          <div className="text-xs text-[#5F6872] dark:text-slate-400 font-playfair font-bold flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#C9A227] animate-ping" />
             <span>Waiting for host to start next round...</span>
           </div>

@@ -44,13 +44,13 @@ export const RoleCard: React.FC<RoleCardProps> = ({
         onClick={handleCardClick}
       >
         {/* FRONT OF CARD (FACE-DOWN / SECRET) */}
-        <div className="absolute inset-0 backface-hidden rounded-3xl bg-[#FAF8F2] border-2 border-[#D8BD6A] shadow-[0_16px_35px_rgba(23,59,103,0.12)] p-6 flex flex-col items-center justify-between overflow-hidden">
+        <div className="absolute inset-0 backface-hidden rounded-3xl bg-[#FAF8F2] dark:bg-[#101726] border-2 border-[#D8BD6A] shadow-[0_16px_35px_rgba(23,59,103,0.12)] dark:shadow-[0_16px_35px_rgba(0,0,0,0.6)] p-6 flex flex-col items-center justify-between overflow-hidden transition-colors duration-300">
           {/* Inner Ornate Filigree Border */}
-          <div className="absolute top-2.5 left-2.5 right-2.5 bottom-2.5 border border-[#D8BD6A]/60 rounded-2xl pointer-events-none" />
-          <div className="absolute top-3.5 left-3.5 right-3.5 bottom-3.5 border border-dashed border-[#D8BD6A]/40 rounded-xl pointer-events-none" />
+          <div className="absolute top-2.5 left-2.5 right-2.5 bottom-2.5 border border-[#D8BD6A]/60 dark:border-[#D8BD6A]/40 rounded-2xl pointer-events-none" />
+          <div className="absolute top-3.5 left-3.5 right-3.5 bottom-3.5 border border-dashed border-[#D8BD6A]/40 dark:border-[#D8BD6A]/20 rounded-xl pointer-events-none" />
 
           {/* Top header */}
-          <div className="w-full flex items-center justify-between text-[#173B67] z-10">
+          <div className="w-full flex items-center justify-between text-[#173B67] dark:text-[#D8BD6A] z-10">
             <Sparkles className="w-4 h-4 text-[#C9A227]" />
             <span className="font-playfair text-xs font-bold tracking-widest uppercase">
               Raja Rani
@@ -63,20 +63,20 @@ export const RoleCard: React.FC<RoleCardProps> = ({
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-20 h-20 rounded-2xl bg-[#FAF3DE] border-2 border-[#C9A227] shadow-[0_4px_16px_rgba(201,162,39,0.25)] flex items-center justify-center text-[#173B67] mb-3"
+              className="w-20 h-20 rounded-2xl bg-[#FAF3DE] dark:bg-[#1A2333] border-2 border-[#C9A227] shadow-[0_4px_16px_rgba(201,162,39,0.25)] flex items-center justify-center text-[#173B67] mb-3"
             >
               <Lock className="w-9 h-9 text-[#C9A227]" />
             </motion.div>
-            <h3 className="font-playfair text-lg font-black text-[#173B67] tracking-wider uppercase">
+            <h3 className="font-playfair text-lg font-black text-[#173B67] dark:text-white tracking-wider uppercase">
               SECRET ROLE
             </h3>
-            <p className="text-xs text-[#5F6872] mt-0.5 font-medium">Confidential Assignment</p>
+            <p className="text-xs text-[#5F6872] dark:text-slate-400 mt-0.5 font-medium">Confidential Assignment</p>
           </div>
 
           {/* Bottom Flip Action CTA */}
           <div className="w-full z-10">
-            <div className="py-2.5 px-4 rounded-xl bg-[#173B67] text-white flex items-center justify-center gap-2 text-xs font-bold font-playfair tracking-wider shadow-sm">
-              <Eye className="w-4 h-4 text-[#D8BD6A]" />
+            <div className="py-2.5 px-4 rounded-xl bg-[#173B67] dark:bg-[#D8BD6A] text-white dark:text-[#070A0F] flex items-center justify-center gap-2 text-xs font-bold font-playfair tracking-wider shadow-sm">
+              <Eye className="w-4 h-4 text-[#D8BD6A] dark:text-[#070A0F]" />
               <span>TAP TO REVEAL</span>
             </div>
           </div>
@@ -84,7 +84,7 @@ export const RoleCard: React.FC<RoleCardProps> = ({
 
         {/* BACK OF CARD (REVEALED PLAYING CARD) */}
         <div
-          className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl bg-white shadow-[0_16px_40px_rgba(23,59,103,0.15)] p-6 flex flex-col items-center justify-between overflow-hidden"
+          className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl bg-white dark:bg-[#101726] shadow-[0_16px_40px_rgba(23,59,103,0.15)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.6)] p-6 flex flex-col items-center justify-between overflow-hidden transition-colors duration-300"
           style={{
             border: `2px solid ${roleConfig?.borderColor || '#D8BD6A'}`,
           }}
@@ -140,9 +140,9 @@ export const RoleCard: React.FC<RoleCardProps> = ({
             >
               {roleConfig?.name.toUpperCase()}
             </h2>
-            <p className="text-xs text-[#5F6872] font-semibold">{roleConfig?.nepaliName}</p>
+            <p className="text-xs text-[#5F6872] dark:text-slate-300 font-semibold">{roleConfig?.nepaliName}</p>
 
-            <p className="text-xs text-[#5F6872] mt-1.5 px-2 line-clamp-2 leading-tight font-medium">
+            <p className="text-xs text-[#5F6872] dark:text-slate-400 mt-1.5 px-2 line-clamp-2 leading-tight font-medium">
               {roleConfig?.description}
             </p>
           </div>
@@ -156,11 +156,11 @@ export const RoleCard: React.FC<RoleCardProps> = ({
                 borderColor: `${roleConfig.borderColor}`,
               }}
             >
-              <div className="flex items-center gap-1.5 mb-0.5 text-[11px] font-bold uppercase tracking-wider text-[#173B67]">
+              <div className="flex items-center gap-1.5 mb-0.5 text-[11px] font-bold uppercase tracking-wider text-[#173B67] dark:text-white">
                 <Shield className="w-3.5 h-3.5" style={{ color: roleConfig.color }} />
                 <span>Mission</span>
               </div>
-              <p className="text-[11px] text-[#263238] leading-snug font-medium">
+              <p className="text-[11px] text-[#263238] dark:text-slate-200 leading-snug font-medium">
                 {roleConfig.secretObjective}
               </p>
             </div>
