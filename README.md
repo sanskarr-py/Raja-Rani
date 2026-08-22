@@ -27,13 +27,13 @@
 
 ## ✨ Features
 
-- 🎨 **Royal Dark Aesthetic**: Midnight onyx, imperial obsidian, radiant gold accents, and subtle particle glows.
-- 🎴 **3D Flip Role Cards**: Realistic spring-based physics for confidential role reveal.
+- 🎨 **Dual Luxury Themes**: Royal Ivory (warm cream, imperial blue & rich gold) and Midnight Onyx Dark Mode with smooth instant switching.
+- 🎴 **3D Flip Role Cards**: Realistic spring-based 3D physics for confidential role reveal with anti-peeking privacy shields.
 - 🔒 **Zero Role Leaking**: Active roles remain strictly hidden on client side.
 - 🔊 **Built-in Web Audio Synthesizer**: Procedural sound effects (card shuffle, 3D flip, police fanfare, suspense heartbeat, timer ticks, victory chimes, buzzer) with zero external audio assets.
 - 🤖 **Smart AI Bot Mode**: Play solo against 4 intelligent AI bots with realistic bluffing dialogues and investigation AI.
 - 🌐 **Real-time Local / Multi-Tab Multiplayer**: Room code generation and instant tab synchronization using `BroadcastChannel` and `localStorage`.
-- 🏆 **Dynamic Leaderboard**: Round-by-round point breakdown, animated score counters, and cinematic victory crowning ceremony.
+- 🏆 **Dynamic Leaderboard**: Round-by-round point breakdown, animated score counters, and cinematic victory crowning ceremony with confetti celebration.
 
 ---
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Volume2, VolumeX, HelpCircle, Copy, Check, Crown, LogOut, Sun, Moon } from 'lucide-react';
 import { sound } from '../../utils/sound';
 import { RulesModal } from './RulesModal';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../context/useTheme';
 
 interface NavbarProps {
   roomCode?: string;
