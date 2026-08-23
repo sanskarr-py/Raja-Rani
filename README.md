@@ -25,6 +25,15 @@
 
 ---
 
+## 🎮 How to Play (4 Simple Steps)
+
+1. **🏰 Create or Join a Room**: Start a game with 4-5 players locally or play solo against smart AI bots.
+2. **🎴 Secret Role Distribution**: Flip your confidential royal 3D card to view your assigned title.
+3. **👮 Public Kotwal Announcement**: Kotwal (Police) is announced to all players. The remaining courtiers keep their identities concealed.
+4. **🕵️ Interrogation & Final Judgment**: Kotwal interrogates players, listens to bluffs, and accuses the suspected Chor before the timer expires!
+
+---
+
 ## ✨ Features
 
 - 🎨 **Dual Luxury Themes**: Royal Ivory (warm cream, imperial blue & rich gold) and Midnight Onyx Dark Mode with smooth instant switching.
