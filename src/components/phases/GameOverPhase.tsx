@@ -26,6 +26,7 @@ export const GameOverPhase: React.FC<GameOverPhaseProps> = ({
     // Continuous celebration fireworks confetti
     const duration = 4000;
     const animationEnd = Date.now() + duration;
+    let animationFrameId: number;
 
     const frame = () => {
       confetti({
@@ -44,10 +45,16 @@ export const GameOverPhase: React.FC<GameOverPhaseProps> = ({
       });
 
       if (Date.now() < animationEnd) {
-        requestAnimationFrame(frame);
+        animationFrameId = requestAnimationFrame(frame);
       }
     };
     frame();
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, []);
 
   return (
