@@ -26,20 +26,27 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
 }) => {
   const trueRoleConfig = player.role ? ROLES_CONFIG[player.role] : null;
 
-  const handleClick = () => {
-    if (canBeAccused && onSelectAccused && !player.isPoliceRevealed) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if ((e.key === 'Enter' || e.key === ' ') && canBeAccused && onSelectAccused && !player.isPoliceRevealed) {
+      e.preventDefault();
       sound.playButtonClick();
       onSelectAccused(player);
     }
   };
 
+  const isInteractive = canBeAccused && !player.isPoliceRevealed;
+
   return (
     <motion.div
-      whileHover={canBeAccused && !player.isPoliceRevealed ? { scale: 1.05, y: -6 } : {}}
-      whileTap={canBeAccused && !player.isPoliceRevealed ? { scale: 0.96 } : {}}
+      whileHover={isInteractive ? { scale: 1.05, y: -6 } : {}}
+      whileTap={isInteractive ? { scale: 0.96 } : {}}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role={isInteractive ? 'button' : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
+      aria-label={isInteractive ? `Accuse ${player.name} of being Chor` : undefined}
       className={`relative flex flex-col items-center transition-all duration-300 ${
-        canBeAccused && !player.isPoliceRevealed ? 'cursor-pointer' : ''
+        isInteractive ? 'cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A227] rounded-2xl' : ''
       }`}
     >
       {/* Bot Dialogue Bark (if present) */}
