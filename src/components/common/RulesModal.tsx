@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Crown, ShieldAlert, Award, HelpCircle } from 'lucide-react';
 import { ROLES_CONFIG, type RoleId } from '../../types/game';
@@ -10,6 +10,17 @@ interface RulesModalProps {
 }
 
 export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -28,6 +39,9 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rules-modal-title"
             className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#FAF8F2] border-2 border-[#D8BD6A] shadow-[0_20px_50px_rgba(23,59,103,0.15)] p-6 md:p-8 z-10 text-[#263238]"
           >
             {/* Header */}
@@ -37,7 +51,7 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
                   <Crown className="w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-xl md:text-2xl font-playfair font-black text-[#173B67] tracking-wide">
+                  <h2 id="rules-modal-title" className="text-xl md:text-2xl font-playfair font-black text-[#173B67] tracking-wide">
                     How to Play Raja Rani
                   </h2>
                   <p className="text-xs md:text-sm text-[#5F6872] font-medium">
@@ -47,6 +61,7 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
               </div>
               <button
                 onClick={onClose}
+                aria-label="Close rules"
                 className="p-2 rounded-xl text-[#5F6872] hover:text-[#173B67] hover:bg-[#F3EDE1] transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />

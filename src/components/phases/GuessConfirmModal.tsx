@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldAlert, Check } from 'lucide-react';
 import type { Player } from '../../types/game';
@@ -18,6 +18,17 @@ export const GuessConfirmModal: React.FC<GuessConfirmModalProps> = ({
   onCancel,
   onConfirm,
 }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onCancel();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onCancel]);
+
   if (!accusedPlayer) return null;
 
   return (
@@ -38,6 +49,9 @@ export const GuessConfirmModal: React.FC<GuessConfirmModalProps> = ({
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="accuse-modal-title"
             className="relative w-full max-w-md rounded-3xl bg-[#FAF8F2] border-2 border-[#173B67] shadow-[0_20px_50px_rgba(23,59,103,0.18)] p-6 md:p-8 z-10 text-center text-[#263238]"
           >
             {/* Header Icon */}
@@ -45,7 +59,7 @@ export const GuessConfirmModal: React.FC<GuessConfirmModalProps> = ({
               <ShieldAlert className="w-8 h-8 text-[#173B67]" />
             </div>
 
-            <h3 className="font-playfair text-xl md:text-2xl font-black text-[#173B67] tracking-wide mb-1">
+            <h3 id="accuse-modal-title" className="font-playfair text-xl md:text-2xl font-black text-[#173B67] tracking-wide mb-1">
               FINAL ACCUSATION
             </h3>
 
