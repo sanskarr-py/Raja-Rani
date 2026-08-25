@@ -26,6 +26,13 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
 }) => {
   const trueRoleConfig = player.role ? ROLES_CONFIG[player.role] : null;
 
+  const handleClick = () => {
+    if (canBeAccused && onSelectAccused && !player.isPoliceRevealed) {
+      sound.playButtonClick();
+      onSelectAccused(player);
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if ((e.key === 'Enter' || e.key === ' ') && canBeAccused && onSelectAccused && !player.isPoliceRevealed) {
       e.preventDefault();
