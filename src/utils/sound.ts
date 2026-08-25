@@ -5,6 +5,8 @@ class SoundManager {
   private ctx: AudioContext | null = null;
   private isMuted: boolean = false;
 
+  private listeners: Set<(isMuted: boolean) => void> = new Set();
+
   constructor() {
     // Check saved preference
     const saved = localStorage.getItem('rajarani_sound_muted');
@@ -25,10 +27,22 @@ class SoundManager {
     }
   }
 
-  public toggleMute(): boolean {
-    this.isMuted = !this.isMuted;
+  public subscribe(listener: (isMuted: boolean) => void): () => void {
+    this.listeners.add(listener);
+    return () => {
+      this.listeners.delete(listener);
+    };
+  }
+
+  public setMuted(muted: boolean): boolean {
+    this.isMuted = muted;
     localStorage.setItem('rajarani_sound_muted', String(this.isMuted));
+    this.listeners.forEach((cb) => cb(this.isMuted));
     return this.isMuted;
+  }
+
+  public toggleMute(): boolean {
+    return this.setMuted(!this.isMuted);
   }
 
   public getIsMuted(): boolean {

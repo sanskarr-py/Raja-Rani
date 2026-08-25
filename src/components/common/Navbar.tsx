@@ -22,9 +22,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isRulesOpen, setIsRulesOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  React.useEffect(() => {
+    return sound.subscribe((muted) => {
+      setIsMuted(muted);
+    });
+  }, []);
+
   const toggleSound = () => {
-    const muted = sound.toggleMute();
-    setIsMuted(muted);
+    sound.toggleMute();
   };
 
   const handleThemeToggle = () => {
@@ -98,6 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={handleThemeToggle}
               title={isDark ? 'Switch to Royal Ivory' : 'Switch to Midnight Onyx'}
+              aria-label={isDark ? 'Switch to Royal Ivory light theme' : 'Switch to Midnight Onyx dark theme'}
               className="p-2 rounded-xl bg-white dark:bg-[#141D2B] hover:bg-[#FAF3DE] dark:hover:bg-[#1A2536] border border-[#D8BD6A]/50 dark:border-[#D8BD6A]/30 text-[#173B67] dark:text-[#D8BD6A] transition-all cursor-pointer shadow-sm"
             >
               {isDark ? (
@@ -114,6 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setIsRulesOpen(true);
               }}
               title="Game Rules"
+              aria-label="View Game Rules"
               className="p-2 rounded-xl bg-white dark:bg-[#141D2B] hover:bg-[#FAF3DE] dark:hover:bg-[#1A2536] border border-[#D8BD6A]/50 dark:border-[#D8BD6A]/30 text-[#173B67] dark:text-slate-200 transition-all cursor-pointer shadow-sm"
             >
               <HelpCircle className="w-4 h-4 md:w-5 md:h-5" />
@@ -123,6 +130,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={toggleSound}
               title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+              aria-label={isMuted ? 'Unmute game audio' : 'Mute game audio'}
+              aria-pressed={!isMuted}
               className="p-2 rounded-xl bg-white dark:bg-[#141D2B] hover:bg-[#FAF3DE] dark:hover:bg-[#1A2536] border border-[#D8BD6A]/50 dark:border-[#D8BD6A]/30 text-[#173B67] dark:text-slate-200 transition-all cursor-pointer shadow-sm"
             >
               {isMuted ? (
@@ -140,6 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onLeaveRoom();
                 }}
                 title="Leave Room"
+                aria-label="Leave current room"
                 className="p-2 rounded-xl bg-[#FDF2F1] dark:bg-red-950/40 hover:bg-[#FCE8E6] dark:hover:bg-red-900/50 border border-[#D8726A]/40 text-[#B63A32] dark:text-red-400 transition-all cursor-pointer shadow-sm ml-1"
               >
                 <LogOut className="w-4 h-4 md:w-5 md:h-5" />

@@ -54,6 +54,21 @@ export function App() {
     return () => unsubscribe();
   }, []);
 
+  // Global keyboard shortcuts (e.g. 'M' to toggle sound)
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        return;
+      }
+      if (e.key === 'm' || e.key === 'M') {
+        sound.toggleMute();
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
+
   // Update & broadcast state helper
   const updateRoomState = useCallback((updatedRoom: GameRoom) => {
     setRoom(updatedRoom);
