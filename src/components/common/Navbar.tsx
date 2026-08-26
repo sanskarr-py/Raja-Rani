@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Volume2, VolumeX, HelpCircle, Copy, Check, Crown, LogOut, Sun, Moon } from 'lucide-react';
 import { sound } from '../../utils/sound';
+import { copyToClipboard } from '../../utils/clipboard';
 import { RulesModal } from './RulesModal';
 import { useTheme } from '../../context/useTheme';
 
@@ -37,12 +38,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     toggleTheme();
   };
 
-  const copyCode = () => {
+  const copyCode = async () => {
     if (!roomCode) return;
-    navigator.clipboard.writeText(roomCode);
-    sound.playButtonClick();
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const success = await copyToClipboard(roomCode);
+    if (success) {
+      sound.playButtonClick();
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (
@@ -82,6 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 onClick={copyCode}
                 title="Click to copy room code"
+                aria-label={copied ? 'Room code copied to clipboard' : `Copy room code ${roomCode}`}
                 className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-[#141D2B] hover:bg-[#FAF3DE] dark:hover:bg-[#1A2536] border border-[#D8BD6A]/60 dark:border-[#D8BD6A]/40 text-xs font-mono text-[#263238] dark:text-slate-200 transition-all cursor-pointer shadow-sm group"
               >
                 <span className="text-[#5F6872] dark:text-slate-400 text-[10px] font-bold">ROOM</span>

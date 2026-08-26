@@ -4,6 +4,7 @@ import { Users, Crown, Bot, UserPlus, UserMinus, Play, Copy, Check, ShieldCheck 
 import type { GameRoom } from '../../types/game';
 import { Button } from '../common/Button';
 import { sound } from '../../utils/sound';
+import { copyToClipboard } from '../../utils/clipboard';
 
 interface LobbyViewProps {
   room: GameRoom;
@@ -25,11 +26,13 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
   const isHost = room.hostId === currentPlayerId;
   const canStart = room.players.length >= 4;
 
-  const copyRoomCode = () => {
-    navigator.clipboard.writeText(room.code);
-    sound.playButtonClick();
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyRoomCode = async () => {
+    const success = await copyToClipboard(room.code);
+    if (success) {
+      sound.playButtonClick();
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (
@@ -61,6 +64,7 @@ export const LobbyView: React.FC<LobbyViewProps> = ({
           </div>
           <button
             onClick={copyRoomCode}
+            aria-label={copied ? 'Room code copied to clipboard' : `Copy room code ${room.code}`}
             className="flex items-center gap-1.5 text-xs font-bold text-[#173B67] dark:text-[#D8BD6A] hover:text-[#C9A227] transition-colors cursor-pointer"
           >
             {copied ? (
