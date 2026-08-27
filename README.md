@@ -43,6 +43,18 @@
 - 🤖 **Smart AI Bot Mode**: Play solo against 4 intelligent AI bots with realistic bluffing dialogues and investigation AI.
 - 🌐 **Real-time Local / Multi-Tab Multiplayer**: Room code generation and instant tab synchronization using `BroadcastChannel` and `localStorage`.
 - 🏆 **Dynamic Leaderboard**: Round-by-round point breakdown, animated score counters, and cinematic victory crowning ceremony with confetti celebration.
+- ⌨️ **Accessible Keyboard Controls**: Full keyboard navigation support with shortcuts for speed and accessibility.
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+| :--- | :--- |
+| <kbd>M</kbd> | Toggle sound mute / unmute globally |
+| <kbd>Esc</kbd> | Close rules modal or accusation prompt |
+| <kbd>1</kbd> – <kbd>5</kbd> | Select suspect player card during Police investigation |
+| <kbd>Enter</kbd> / <kbd>Space</kbd> | Confirm selection or trigger button actions |
 
 ---
 
