@@ -148,6 +148,27 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
                   <strong>Tip for Police:</strong> Watch other players’ reactions and bluff cues. The Chor will pretend to be the King or Queen!
                 </span>
               </div>
+
+              {/* Keyboard Shortcuts Guide */}
+              <div className="p-3.5 rounded-2xl bg-white border border-[#E2D7C3] shadow-sm">
+                <h4 className="font-playfair text-xs font-bold text-[#173B67] mb-2 uppercase tracking-wider">
+                  ⌨️ Keyboard Shortcuts
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-[#5F6872]">
+                  <div className="flex items-center gap-1.5">
+                    <kbd className="px-1.5 py-0.5 bg-[#FAF3DE] border border-[#D8BD6A]/60 rounded text-[11px] font-mono font-bold text-[#173B67]">M</kbd>
+                    <span>Mute Sound</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <kbd className="px-1.5 py-0.5 bg-[#FAF3DE] border border-[#D8BD6A]/60 rounded text-[11px] font-mono font-bold text-[#173B67]">Esc</kbd>
+                    <span>Close Modal</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <kbd className="px-1.5 py-0.5 bg-[#FAF3DE] border border-[#D8BD6A]/60 rounded text-[11px] font-mono font-bold text-[#173B67]">1-5</kbd>
+                    <span>Select Card</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Footer */}
