@@ -81,6 +81,15 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+### Available Scripts
+
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Starts Vite local development server |
+| `npm run build` | Typechecks with TypeScript and creates production build |
+| `npm run lint` | Runs oxlint fast code linter across the project |
+| `npm run preview` | Locally previews production build |
+
 ---
 
 ## 🛠️ Built With
