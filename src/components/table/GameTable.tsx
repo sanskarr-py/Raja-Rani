@@ -46,17 +46,32 @@ export const GameTable: React.FC<GameTableProps> = ({
 
         {/* Players Grid / Ring Around the Table */}
         <div className="relative z-10 w-full flex flex-wrap items-center justify-center gap-3 md:gap-6 mt-4">
-          {players.map((p) => (
-            <TablePlayer
-              key={p.id}
-              player={p}
-              isCurrentPlayer={p.id === currentPlayerId}
-              canBeAccused={canAccuse && p.id !== currentPlayerId && !p.isPoliceRevealed}
-              isAccused={p.id === accusedPlayerId}
-              onSelectAccused={onSelectAccused}
-              showTrueRole={showTrueRoles}
-            />
-          ))}
+          {(() => {
+            const suspectIds = canAccuse
+              ? players
+                  .filter((p) => p.id !== currentPlayerId && !p.isPoliceRevealed)
+                  .map((p) => p.id)
+              : [];
+
+            return players.map((p) => {
+              const suspectIndex = suspectIds.indexOf(p.id);
+              const isSuspect = suspectIndex !== -1;
+              const currentSuspectNumber = isSuspect ? suspectIndex + 1 : undefined;
+
+              return (
+                <TablePlayer
+                  key={p.id}
+                  player={p}
+                  isCurrentPlayer={p.id === currentPlayerId}
+                  canBeAccused={isSuspect}
+                  shortcutNumber={currentSuspectNumber}
+                  isAccused={p.id === accusedPlayerId}
+                  onSelectAccused={onSelectAccused}
+                  showTrueRole={showTrueRoles}
+                />
+              );
+            });
+          })()}
         </div>
       </div>
     </div>

@@ -23,11 +23,15 @@ export const GuessConfirmModal: React.FC<GuessConfirmModalProps> = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onCancel();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        sound.playButtonClick();
+        onConfirm();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onCancel]);
+  }, [isOpen, onCancel, onConfirm]);
 
   if (!accusedPlayer) return null;
 

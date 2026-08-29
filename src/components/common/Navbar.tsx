@@ -133,10 +133,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Sound Toggle */}
             <button
               onClick={toggleSound}
-              title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-              aria-label={isMuted ? 'Unmute game audio' : 'Mute game audio'}
+              title={isMuted ? 'Unmute Audio (Press M)' : 'Mute Audio (Press M)'}
+              aria-label={isMuted ? 'Unmute game audio (Shortcut: M)' : 'Mute game audio (Shortcut: M)'}
+              aria-keyshortcuts="KeyM"
               aria-pressed={!isMuted}
-              className="p-2 rounded-xl bg-white dark:bg-[#141D2B] hover:bg-[#FAF3DE] dark:hover:bg-[#1A2536] border border-[#D8BD6A]/50 dark:border-[#D8BD6A]/30 text-[#173B67] dark:text-slate-200 transition-all cursor-pointer shadow-sm"
+              className="p-2 rounded-xl bg-white dark:bg-[#141D2B] hover:bg-[#FAF3DE] dark:hover:bg-[#1A2536] border border-[#D8BD6A]/50 dark:border-[#D8BD6A]/30 text-[#173B67] dark:text-slate-200 transition-all cursor-pointer shadow-sm relative group"
             >
               {isMuted ? (
                 <VolumeX className="w-4 h-4 md:w-5 md:h-5 text-[#B63A32]" />

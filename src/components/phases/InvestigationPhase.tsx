@@ -67,6 +67,33 @@ export const InvestigationPhase: React.FC<InvestigationPhaseProps> = ({
     }
   }, [policePlayer, room.players, onAccusePlayer]);
 
+  // Handle keyboard shortcuts (1-9) to select suspect
+  useEffect(() => {
+    if (!isPolice || isConfirmOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        return;
+      }
+
+      const num = parseInt(e.key, 10);
+      if (!isNaN(num) && num >= 1 && num <= 9) {
+        const suspects = room.players.filter((p) => p.id !== room.policeId && !p.isPoliceRevealed);
+        const targetSuspect = suspects[num - 1];
+        if (targetSuspect) {
+          e.preventDefault();
+          sound.playButtonClick();
+          setSelectedSuspect(targetSuspect);
+          setIsConfirmOpen(true);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isPolice, isConfirmOpen, room.players, room.policeId]);
+
   const handleSuspectClick = (player: Player) => {
     if (!isPolice) return;
     setSelectedSuspect(player);

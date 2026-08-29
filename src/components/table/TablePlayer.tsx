@@ -10,6 +10,7 @@ interface TablePlayerProps {
   isPolicePhase?: boolean;
   canBeAccused?: boolean;
   isAccused?: boolean;
+  shortcutNumber?: number;
   onSelectAccused?: (player: Player) => void;
   showTrueRole?: boolean; // Only true in result/scoreboard phases!
   compact?: boolean;
@@ -20,6 +21,7 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
   isCurrentPlayer,
   canBeAccused = false,
   isAccused = false,
+  shortcutNumber,
   onSelectAccused,
   showTrueRole = false,
   compact = false,
@@ -51,11 +53,18 @@ export const TablePlayer: React.FC<TablePlayerProps> = ({
       onKeyDown={handleKeyDown}
       role={isInteractive ? 'button' : undefined}
       tabIndex={isInteractive ? 0 : undefined}
-      aria-label={isInteractive ? `Accuse ${player.name} of being Chor` : undefined}
+      aria-label={isInteractive ? `Accuse ${player.name} of being Chor${shortcutNumber ? ` (Press ${shortcutNumber})` : ''}` : undefined}
+      aria-keyshortcuts={isInteractive && shortcutNumber ? String(shortcutNumber) : undefined}
       className={`relative flex flex-col items-center transition-all duration-300 ${
         isInteractive ? 'cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A227] rounded-2xl' : ''
       }`}
     >
+      {/* Shortcut Number Badge when interactive */}
+      {isInteractive && shortcutNumber !== undefined && (
+        <span className="absolute -top-2 -left-2 z-20 w-5 h-5 rounded-full bg-[#173B67] dark:bg-[#C9A227] text-white dark:text-[#0E1522] text-[10px] font-mono font-bold flex items-center justify-center shadow-md pointer-events-none">
+          {shortcutNumber}
+        </span>
+      )}
       {/* Bot Dialogue Bark (if present) */}
       {player.botPersonality?.dialogue && !showTrueRole && (
         <motion.div
