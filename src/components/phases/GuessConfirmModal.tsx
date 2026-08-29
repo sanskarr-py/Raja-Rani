@@ -56,42 +56,42 @@ export const GuessConfirmModal: React.FC<GuessConfirmModalProps> = ({
             role="dialog"
             aria-modal="true"
             aria-labelledby="accuse-modal-title"
-            className="relative w-full max-w-md rounded-3xl bg-[#FAF8F2] border-2 border-[#173B67] shadow-[0_20px_50px_rgba(23,59,103,0.18)] p-6 md:p-8 z-10 text-center text-[#263238]"
+            className="relative w-full max-w-md rounded-3xl bg-[#FAF8F2] dark:bg-[#0E1522] border-2 border-[#173B67] dark:border-[#D8BD6A]/60 shadow-[0_20px_50px_rgba(23,59,103,0.18)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-6 md:p-8 z-10 text-center text-[#263238] dark:text-slate-200"
           >
             {/* Header Icon */}
-            <div className="w-16 h-16 rounded-2xl bg-[#FAF3DE] border-2 border-[#D8BD6A] text-[#173B67] flex items-center justify-center mx-auto mb-4 shadow-sm">
-              <ShieldAlert className="w-8 h-8 text-[#173B67]" />
+            <div className="w-16 h-16 rounded-2xl bg-[#FAF3DE] dark:bg-[#141D2B] border-2 border-[#D8BD6A] text-[#173B67] dark:text-[#D8BD6A] flex items-center justify-center mx-auto mb-4 shadow-sm">
+              <ShieldAlert className="w-8 h-8 text-[#173B67] dark:text-[#D8BD6A]" />
             </div>
 
-            <h3 id="accuse-modal-title" className="font-playfair text-xl md:text-2xl font-black text-[#173B67] tracking-wide mb-1">
+            <h3 id="accuse-modal-title" className="font-playfair text-xl md:text-2xl font-black text-[#173B67] dark:text-white tracking-wide mb-1">
               FINAL ACCUSATION
             </h3>
 
-            <p className="text-xs text-[#5F6872] mb-6 font-medium">
+            <p className="text-xs text-[#5F6872] dark:text-slate-400 mb-6 font-medium">
               This decree will determine the fate of the entire court.
             </p>
 
             {/* Accused Target Highlight Box */}
-            <div className="p-4 rounded-2xl bg-white border-2 border-[#D8BD6A] flex items-center justify-center gap-4 mb-6 shadow-sm">
-              <div className="w-14 h-14 rounded-full bg-[#FAF8F2] border border-[#D8BD6A] flex items-center justify-center text-3xl shadow-sm">
+            <div className="p-4 rounded-2xl bg-white dark:bg-[#141D2B] border-2 border-[#D8BD6A] dark:border-[#D8BD6A]/40 flex items-center justify-center gap-4 mb-6 shadow-sm">
+              <div className="w-14 h-14 rounded-full bg-[#FAF8F2] dark:bg-[#0E1522] border border-[#D8BD6A] flex items-center justify-center text-3xl shadow-sm">
                 {accusedPlayer.avatar}
               </div>
               <div className="text-left">
-                <span className="text-[11px] font-playfair font-bold text-[#5F6872] block uppercase tracking-wider">
+                <span className="text-[11px] font-playfair font-bold text-[#5F6872] dark:text-slate-400 block uppercase tracking-wider">
                   Accused Suspect
                 </span>
-                <span className="font-playfair font-black text-lg text-[#173B67]">
+                <span className="font-playfair font-black text-lg text-[#173B67] dark:text-white">
                   {accusedPlayer.name}
                 </span>
               </div>
             </div>
 
             {/* Stakes Warning */}
-            <div className="text-xs text-[#5F6872] space-y-1.5 mb-6 text-left p-3.5 rounded-xl bg-[#FAF3DE]/70 border border-[#D8BD6A]/70">
-              <p className="flex items-center gap-1.5 text-emerald-800 font-bold">
+            <div className="text-xs text-[#5F6872] dark:text-slate-300 space-y-1.5 mb-6 text-left p-3.5 rounded-xl bg-[#FAF3DE]/70 dark:bg-[#141D2B]/80 border border-[#D8BD6A]/70 dark:border-[#D8BD6A]/30">
+              <p className="flex items-center gap-1.5 text-emerald-800 dark:text-emerald-400 font-bold">
                 <span>✓</span> If Chor: Police gets +500 pts, Chor gets 0
               </p>
-              <p className="flex items-center gap-1.5 text-[#B63A32] font-bold">
+              <p className="flex items-center gap-1.5 text-[#B63A32] dark:text-red-400 font-bold">
                 <span>✗</span> If Innocent: Police gets 0, Real Chor steals +500 pts
               </p>
             </div>

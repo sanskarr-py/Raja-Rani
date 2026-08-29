@@ -51,22 +51,22 @@ export const SuspensePhase: React.FC<SuspensePhaseProps> = ({
   }, [onRevealFinished]);
 
   return (
-    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-center p-4 md:p-8 z-10 text-center max-w-lg mx-auto w-full text-[#263238]">
+    <div className="relative min-h-[calc(100vh-68px)] flex flex-col items-center justify-center p-4 md:p-8 z-10 text-center max-w-lg mx-auto w-full text-[#263238] dark:text-slate-200">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="w-full flex flex-col items-center"
       >
-        <span className="px-4 py-1 rounded-full bg-[#FAF3DE] border border-[#D8BD6A] text-[#173B67] text-xs font-playfair font-black tracking-widest uppercase mb-3 inline-block shadow-sm">
+        <span className="px-4 py-1 rounded-full bg-[#FAF3DE] dark:bg-[#141D2B] border border-[#D8BD6A] dark:border-[#D8BD6A]/50 text-[#173B67] dark:text-[#D8BD6A] text-xs font-playfair font-black tracking-widest uppercase mb-3 inline-block shadow-sm">
           MOMENT OF TRUTH
         </span>
 
-        <h2 className="text-2xl md:text-3xl font-playfair font-black text-[#173B67] tracking-wide mb-2">
+        <h2 className="text-2xl md:text-3xl font-playfair font-black text-[#173B67] dark:text-white tracking-wide mb-2">
           THE ACCUSATION HAS BEEN MADE...
         </h2>
-        <p className="text-sm text-[#5F6872] mb-6 font-medium">
+        <p className="text-sm text-[#5F6872] dark:text-slate-400 mb-6 font-medium">
           {policePlayer?.name || 'Police'} has officially accused{' '}
-          <strong className="text-[#B63A32] font-black">{accusedPlayer?.name}</strong>!
+          <strong className="text-[#B63A32] dark:text-red-400 font-black">{accusedPlayer?.name}</strong>!
         </p>
 
         {!showCard ? (
@@ -79,7 +79,7 @@ export const SuspensePhase: React.FC<SuspensePhaseProps> = ({
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 1.4, opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="w-28 h-28 rounded-3xl bg-white border-2 border-[#173B67] shadow-[0_12px_36px_rgba(23,59,103,0.18)] flex items-center justify-center text-4xl font-playfair font-black text-[#173B67]"
+                className="w-28 h-28 rounded-3xl bg-white dark:bg-[#0E1522] border-2 border-[#173B67] dark:border-[#D8BD6A] shadow-[0_12px_36px_rgba(23,59,103,0.18)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.6)] flex items-center justify-center text-4xl font-playfair font-black text-[#173B67] dark:text-[#D8BD6A]"
               >
                 {countdown}
               </motion.div>
