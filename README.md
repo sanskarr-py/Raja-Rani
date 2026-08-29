@@ -104,6 +104,52 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
+## 🏗️ Architecture & State Machine
+
+```mermaid
+stateDiagram-v2
+    [*] --> Landing
+    Landing --> Lobby: Create / Join Room
+    Landing --> RoleReveal: Solo Quick Play (AI Bots)
+    Lobby --> RoleReveal: Host Starts Game
+    RoleReveal --> PoliceReveal: All Players Viewed Role
+    PoliceReveal --> Investigation: Police Step Forward
+    Investigation --> Suspense: Police Accuses Suspect / Timer Expires
+    Suspense --> ResultReveal: Identity Unveiled
+    ResultReveal --> Scoreboard: View Round Scores
+    Scoreboard --> RoleReveal: Next Round (if target not reached)
+    Scoreboard --> GameOver: Winner Reaches Point Limit (5000 pts)
+    GameOver --> Lobby: Play Again
+    GameOver --> Landing: Exit to Main Menu
+```
+
+---
+
+## 📁 Project Structure
+
+```text
+Raja-Rani/
+├── public/               # Static web assets & favicon
+├── src/
+│   ├── assets/           # Application icons and branding
+│   ├── components/
+│   │   ├── common/       # Navbar, Button, RulesModal, ParticleBackground
+│   │   ├── landing/      # LandingPage, CreateRoom, JoinRoom
+│   │   ├── lobby/        # LobbyView, player roster, room management
+│   │   ├── phases/       # Phase components (Reveal, Investigation, Suspense, Results, Scoreboard)
+│   │   └── table/        # GameTable, 3D RoleCard, TablePlayer
+│   ├── context/          # ThemeContext & useTheme provider
+│   ├── types/            # TypeScript interfaces & game models
+│   ├── utils/            # Web Audio synthesizer, bot AI, broadcast network, clipboard
+│   ├── App.tsx           # Main game loop controller & state orchestration
+│   ├── main.tsx          # React application entrypoint
+│   └── index.css         # Tailwind & custom royal design tokens
+├── package.json          # Dependencies and scripts
+└── README.md             # Project documentation
+```
+
+---
+
 ## 📜 License
 
 MIT License. Crafted with ❤️ for traditional Nepali gaming culture.
